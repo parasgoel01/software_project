@@ -1,0 +1,38 @@
+Junit Testing
+-operations
+-set and check value of attributes of an object or variables of a module
+-put objects in all possible states
+
+HomeFragment
+	onCreateView
+
+TescoAsyncTask
+	doInBackground
+		check arguments: String,Void,String
+		check variable: check price string. Expected V Actual
+	onPostExecute
+		check arguments: String
+	functionality: - pass in the product name
+		       - call the TescoGetPrice class and pass in the product name
+		       - return the price of the product
+
+TescoGetPrice
+	getPrices
+		check arguments: String itemName, String fullString
+		check variables: JSONObject
+	functionality: - Insert itemName into search URL
+		       - Use the Tesco API to find the product requested
+		       - Store the response given by the API
+		       - Scan the reponse using a delimiter
+		       - Assign the response as a JSONObject
+		       - Take the first result of the JSONObject (the price)
+		       - Return the price as a string
+
+TypeListFragment
+	check variables: shopList, lines
+	functionality: - get user inputted text into a string
+		       - split the user inputted string into individual products
+		       - pass products into TescoGetPrice
+
+MainActivity
+	
