@@ -19,8 +19,9 @@ public class TescoGetPrice {
     @TargetApi(Build.VERSION_CODES.KITKAT)
     public static String getPrices(String itemName)
     {
+        String fixedString = fixString(itemName);
         try {
-            String fullString = "https://dev.tescolabs.com/grocery/products/?query="+itemName+"&offset=0&limit=1";
+            String fullString = "https://dev.tescolabs.com/grocery/products/?query="+fixedString+"&offset=0&limit=1";
             URLConnection connection = new URL(fullString).openConnection();
             connection.setRequestProperty("Ocp-Apim-Subscription-Key", "3e3f4b70e52743f19ed51bed179a212c");
             InputStream response = connection.getInputStream();
@@ -31,7 +32,6 @@ public class TescoGetPrice {
 
                     JSONArray array = object.getJSONObject("uk").getJSONObject("ghs").getJSONObject("products").getJSONArray("results");
                     JSONObject item = (JSONObject)array.get(0);
-                    Log.d("inAsyncCheck", item.get("name").toString());
                     return item.get("price").toString();
 
                 } catch (JSONException e) {
@@ -45,5 +45,10 @@ public class TescoGetPrice {
             e.printStackTrace(); // ASK
         }
         return null; //ASK
+    }
+
+    private static String fixString(String itemName)
+    {
+        return itemName.replaceAll("\\s+", "\\+");
     }
 }

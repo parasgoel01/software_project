@@ -2,26 +2,21 @@ package com.example.seancasey.softwaretestapplication;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.lang.reflect.Array;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.concurrent.ExecutionException;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class TypeListFragment extends Fragment {
 
@@ -36,17 +31,17 @@ public class TypeListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         myInflatedView = inflater.inflate(R.layout.fragment_typelist, container, false);
+        linker = (Linker)getActivity();
         button2 = (Button) myInflatedView.findViewById(R.id.button2);
         editText = (EditText) myInflatedView.findViewById(R.id.editText);
 
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                shopList = editText.getText().toString();
-                Toast.makeText(getActivity(), "Your shopping list is:\n" + shopList, Toast.LENGTH_SHORT).show();
-                ArrayList<String> itemsToSearchFor = new ArrayList<String>(Arrays.asList(shopList.split("[\\r\\n]+")));
-                getPricesInputted(itemsToSearchFor);
+                createList();
+                getPriceList();
 
+                linker.replaceFragments(MyValues.LOAD_DISPLAY_FRAGMENT);
             }
         });
 
@@ -131,19 +126,13 @@ public class TypeListFragment extends Fragment {
         return document;
     }
 
-    public void getPricesInputted(ArrayList<String> itemsToSearchFor)
+    public ArrayList<String> getPricesInputted(ArrayList<String> itemsToSearchFor)
     {
+        ArrayList<String> prices = new ArrayList<>();
         TescoAsyncTask tescoAsyncTask = new TescoAsyncTask();
         try
         {
-            ArrayList<String> prices = tescoAsyncTask.execute(itemsToSearchFor).get();
-            double totalPrice = 0.0;
-            for (int i = 0; i < itemsToSearchFor.size(); i++)
-            {
-                Toast.makeText(getActivity(), itemsToSearchFor.get(i) + " " + prices.get(i), Toast.LENGTH_SHORT).show();
-                totalPrice+=Double.valueOf(prices.get(i));
-            }
-            Toast.makeText(getActivity(), String.valueOf(totalPrice), Toast.LENGTH_SHORT).show();
+            prices = tescoAsyncTask.execute(itemsToSearchFor).get();
         }
         catch(InterruptedException ex1)
         {
@@ -153,8 +142,22 @@ public class TypeListFragment extends Fragment {
         {
             ex2.printStackTrace();
         }
+        return prices;
     }
 
+    public void getPriceList()
+    {
+        ArrayList<String> prices = getPricesInputted(linker.getProductNames());
+        linker.setProductPrices(prices);
+    }
+
+    public void createList()
+    {
+        shopList = editText.getText().toString();
+        ArrayList<String> itemsToSearchFor = new ArrayList<String>(Arrays.asList(shopList.split("[\\r\\n]+")));
+        linker.setProductNames(itemsToSearchFor); //TODO error checking fix later
+
+    }
 
 
 

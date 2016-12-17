@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.support.v7.internal.view.menu.ActionMenuItem;
 import android.view.WindowManager;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity implements Linker {
 
     //private method2
@@ -19,6 +21,9 @@ public class MainActivity extends AppCompatActivity implements Linker {
     private TypeListFragment typeListFragment;
     private DisplayFragment displayFragment;
 
+    private ArrayList<String> productNames;
+    private ArrayList<String> productPrices;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,7 +31,6 @@ public class MainActivity extends AppCompatActivity implements Linker {
         //MORE STUFF
 
         //setup fragment method2...
-        currentFragment = R.id.activity_main;
         typeListFragment = new TypeListFragment();
         displayFragment = new DisplayFragment();
 
@@ -61,13 +65,47 @@ public class MainActivity extends AppCompatActivity implements Linker {
         {
             fragment = typeListFragment;
             //transaction.replace(R.id.activity_main, this.typeListFragment);
+            currentFragment = MyValues.CURRENT_TYPE_LIST_FRAGMENT;
         }
         else if(myFragment == MyValues.LOAD_DISPLAY_FRAGMENT)
         {
             fragment = displayFragment;
             //transaction.replace(R.id.activity_main, this.displayFragment);
+            currentFragment = MyValues.CURRENT_DISPLAY_FRAGMENT;
         }
         transaction.replace(R.id.activity_main, fragment);
         transaction.commit();
+    }
+
+    public void onBackPressed()
+    {
+        if (currentFragment != MyValues.CURRENT_TYPE_LIST_FRAGMENT)
+        {
+            replaceFragments(MyValues.LOAD_TYPE_LIST_FRAGMENT);
+        }
+        else
+        {
+            super.onBackPressed();
+        }
+    }
+
+    public void setProductPrices(ArrayList<String> productPrices)
+    {
+        this.productPrices = productPrices;
+    }
+
+    public ArrayList<String> getProductPrices()
+    {
+        return this.productPrices;
+    }
+
+    public void setProductNames(ArrayList<String> productNames)
+    {
+        this.productNames = productNames;
+    }
+
+    public ArrayList<String> getProductNames()
+    {
+        return productNames;
     }
 }

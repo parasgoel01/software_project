@@ -15,7 +15,7 @@ import java.util.regex.Pattern;
  * Created by Niamh on 13/12/2016.
  */
 
-public class SuperValuGetPrice {
+/*public class SuperValuGetPrice {
 	public static String getPrices(String itemName)
 	{
 		try {
@@ -46,3 +46,4 @@ public class SuperValuGetPrice {
 		}
 	}
 }
+*/
