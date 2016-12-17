@@ -15,6 +15,7 @@ import org.jsoup.nodes.Document;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.lang.reflect.Array;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -25,6 +26,8 @@ import java.util.regex.Pattern;
 public class TypeListFragment extends Fragment {
 
     private View myInflatedView;
+    private Linker linker;
+
     private EditText editText;
     private Button button2;
     private String shopList;
@@ -41,21 +44,14 @@ public class TypeListFragment extends Fragment {
             public void onClick(View v) {
                 shopList = editText.getText().toString();
                 Toast.makeText(getActivity(), "Your shopping list is:\n" + shopList, Toast.LENGTH_SHORT).show();
-                //String lines[]
-                ArrayList<String> lines = new ArrayList<String>(Arrays.asList(shopList.split("[\\r\\n]+")));
-                //lines = shopList.split("[\\r\\n]+");
-                //new ArrayList<Element>(Arrays.asList(array))
-
-                for (String line:lines)
-                {
-                    Toast.makeText(getActivity(), line, Toast.LENGTH_SHORT).show();
-                }
+                ArrayList<String> itemsToSearchFor = new ArrayList<String>(Arrays.asList(shopList.split("[\\r\\n]+")));
+                getPricesInputted(itemsToSearchFor);
 
             }
         });
 
         //Pattern p = Pattern.compile(".*[p]rice\\:(\\d+\\.\\d+)");
-        Pattern p = Pattern.compile(".*?[p]rice\\:(\\d+(\\.\\d+)*).*");
+        /*Pattern p = Pattern.compile(".*?[p]rice\\:(\\d+(\\.\\d+)*).*");
 
         String myString = "Find the first price10.8 Hello price:9.3 nextprice:11.1123";
         Matcher m = p.matcher(myString);
@@ -69,21 +65,7 @@ public class TypeListFragment extends Fragment {
         else
         {
             Toast.makeText(getActivity(), "NO", Toast.LENGTH_SHORT).show();
-        }
-
-        TescoAsyncTask tescoAsyncTask = new TescoAsyncTask();
-       try
-       {
-        String price = tescoAsyncTask.execute("milk").get();
-       }
-       catch(InterruptedException ex1)
-       {
-           ex1.printStackTrace();
-       }
-        catch (ExecutionException ex2)
-        {
-            ex2.printStackTrace();
-        }
+        }*/
 
         ///////////////////////////////////////////////
         ///////////////////////////////////////////////
@@ -148,6 +130,32 @@ public class TypeListFragment extends Fragment {
         Document document = Jsoup.connect("https://www.ismyinternetworking.com/").get();
         return document;
     }
+
+    public void getPricesInputted(ArrayList<String> itemsToSearchFor)
+    {
+        TescoAsyncTask tescoAsyncTask = new TescoAsyncTask();
+        try
+        {
+            ArrayList<String> prices = tescoAsyncTask.execute(itemsToSearchFor).get();
+            double totalPrice = 0.0;
+            for (int i = 0; i < itemsToSearchFor.size(); i++)
+            {
+                Toast.makeText(getActivity(), itemsToSearchFor.get(i) + " " + prices.get(i), Toast.LENGTH_SHORT).show();
+                totalPrice+=Double.valueOf(prices.get(i));
+            }
+            Toast.makeText(getActivity(), String.valueOf(totalPrice), Toast.LENGTH_SHORT).show();
+        }
+        catch(InterruptedException ex1)
+        {
+            ex1.printStackTrace();
+        }
+        catch (ExecutionException ex2)
+        {
+            ex2.printStackTrace();
+        }
+    }
+
+
 
 
 

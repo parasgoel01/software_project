@@ -1,20 +1,22 @@
 package com.example.seancasey.softwaretestapplication;
 
 import android.os.AsyncTask;
+import java.util.ArrayList;
 
-import java.net.URL;
+public class TescoAsyncTask extends AsyncTask<ArrayList<String>, Void, ArrayList<String>> {
 
-public class TescoAsyncTask extends AsyncTask<String, Void, String> {
+    protected ArrayList<String> doInBackground(ArrayList<String>... params) {
 
-    protected String doInBackground(String... params) {
-
-        //String item = "milk";
-        String price = TescoGetPrice.getPrices(params[0]);
-
-        return price;
+        ArrayList<String> listOfPrices = new ArrayList<>();
+        for (String item:params[0])
+        {
+            String price = TescoGetPrice.getPrices(item);
+            listOfPrices.add(price);
+        }
+        return listOfPrices;
     }
 
-    protected void onPostExecute(String result)
+    protected void onPostExecute(ArrayList<String> result) //ASK
     {
 
     }

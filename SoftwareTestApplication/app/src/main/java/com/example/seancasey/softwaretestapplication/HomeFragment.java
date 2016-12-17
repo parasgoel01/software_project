@@ -33,7 +33,7 @@ public class HomeFragment extends Fragment {
             public void onClick(View v) {
                 x+=1;
                 button.setText(String.format(Locale.UK, "%d", x));
-                linker.replaceFragments();
+                linker.replaceFragments(0);
 
             }
         });

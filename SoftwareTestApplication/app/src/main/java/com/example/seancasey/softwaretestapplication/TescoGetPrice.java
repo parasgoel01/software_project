@@ -20,27 +20,19 @@ public class TescoGetPrice {
     public static String getPrices(String itemName)
     {
         try {
-            String fullString = "https://dev.tescolabs.com/grocery/products/?query="+itemName+"&offset=0&limit=10";
+            String fullString = "https://dev.tescolabs.com/grocery/products/?query="+itemName+"&offset=0&limit=1";
             URLConnection connection = new URL(fullString).openConnection();
             connection.setRequestProperty("Ocp-Apim-Subscription-Key", "3e3f4b70e52743f19ed51bed179a212c");
             InputStream response = connection.getInputStream();
             try (Scanner scanner = new Scanner(response)) {
                 String responseBody = scanner.useDelimiter("\\A").next();
-                //System.out.println(responseBody);
                 try {
                     JSONObject object = new JSONObject(responseBody);
 
                     JSONArray array = object.getJSONObject("uk").getJSONObject("ghs").getJSONObject("products").getJSONArray("results");
-                    for(int i =0; i < array.length(); i++){
-                        JSONObject item = (JSONObject)array.get(i);
-
-                        //System.out.println("Name: "+item.get("name"));
-                        //System.out.println("Price: "+item.get("price"));
-                        Log.d("ABCD", item.get("name").toString());
-                    }
                     JSONObject item = (JSONObject)array.get(0);
+                    Log.d("inAsyncCheck", item.get("name").toString());
                     return item.get("price").toString();
-
 
                 } catch (JSONException e) {
                     // TODO Auto-generated catch block
@@ -50,8 +42,8 @@ public class TescoGetPrice {
 
         } catch (IOException e) {
             // TODO Auto-generated catch block
-            e.printStackTrace();
+            e.printStackTrace(); // ASK
         }
-        return "SOMETHING";
+        return null; //ASK
     }
 }
