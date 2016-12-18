@@ -1,26 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/home_content"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.seancasey.softwaretestapplication.HomeFragment">
-
-
-    <TextView
-        android:text="TYPE YOUR LIST HERE"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="sans-serif"
-        android:id="@id/textView"
-        android:textSize="30sp"
-        android:textStyle="normal|bold"
-        android:gravity="top|center"
-        android:layout_gravity="top|center" />
-
+    tools:context="com.example.seancasey.softwaretestapplication.TypeListFragment">
 
 
     <EditText
-        android:layout_width="match_parent"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text=""
         android:ems="10"
@@ -46,6 +39,21 @@
         android:layout_marginTop="29dp"
         android:id="@+id/submitButton" />
 
+    <TextView
+        android:text="TYPE YOUR LIST HERE"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif"
+        android:id="@id/textView"
+        android:textSize="30sp"
+        android:textStyle="normal|bold"
+        android:gravity="top|center"
+        android:layout_gravity="top|center"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
 </RelativeLayout>
+    </ScrollView>
 
 
