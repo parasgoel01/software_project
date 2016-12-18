@@ -2,27 +2,16 @@ package com.example.seancasey.softwaretestapplication;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.net.URL;
-import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Scanner;
-import java.util.concurrent.ExecutionException;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+
+import static com.example.seancasey.softwaretestapplication.MyValues.LOAD_DISPLAY_FRAGMENT;
 
 public class TypeListFragment extends Fragment {
 
@@ -44,48 +33,52 @@ public class TypeListFragment extends Fragment {
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                createList();
-                getPriceList();
+                ArrayList<String> itemsToSearchFor = createList();
+                //ArrayList<String> tescoPrices = getTescoPrices(itemsToSearchFor);
+                //ArrayList<String> superValuPrices = getSuperValuPrices(itemsToSearchFor);
+                ArrayList<String> tescoPrices = new TescoGetPricesInputted().getShopPrices(itemsToSearchFor);
+                ArrayList<String> superValuPrices = new SuperValuGetPricesInputted().getShopPrices(itemsToSearchFor);
+                linker.setProductNames(itemsToSearchFor);
+                linker.setTescoProductPrices(tescoPrices);
+                linker.setSuperValuProductPrices(superValuPrices);
+                //getPriceList();
 
-                linker.replaceFragments(MyValues.LOAD_DISPLAY_FRAGMENT);
+                linker.replaceFragments(LOAD_DISPLAY_FRAGMENT);
             }
         });
 
-        SuperValuAsyncTask superValuAsyncTask = new SuperValuAsyncTask();
+        SuperValuProductPrice superValuAsyncTask = new SuperValuProductPrice();
 
         return myInflatedView;
     }
 
-    public ArrayList<String> getPricesInputted(ArrayList<String> itemsToSearchFor)
+    /*public ArrayList<String> getTescoPrices(ArrayList<String> itemsToSearchFor)
     {
-        ArrayList<String> prices = new ArrayList<>();
-        TescoAsyncTask tescoAsyncTask = new TescoAsyncTask();
-        try
-        {
-            prices = tescoAsyncTask.execute(itemsToSearchFor).get();
-        }
-        catch(InterruptedException ex1)
-        {
-            ex1.printStackTrace();
-        }
-        catch (ExecutionException ex2)
-        {
-            ex2.printStackTrace();
-        }
-        return prices;
+        TescoGetPricesInputted tescoGetPricesInputted = new TescoGetPricesInputted(); //ASK (static?)
+        return tescoGetPricesInputted.getPricesInputted(itemsToSearchFor);
     }
+    */
+    /*
+    public ArrayList<String> getSuperValuPrices(ArrayList<String> itemsToSearchFor)
+    {
+        SuperValuGetPricesInputted superValuGetPricesInputted = new SuperValuGetPricesInputted(); //ASK (static?)
+        return superValuGetPricesInputted.getPricesInputted(itemsToSearchFor);
+    }
+    */
 
+    /*
     public void getPriceList()
     {
-        ArrayList<String> prices = getPricesInputted(linker.getProductNames());
-        linker.setProductPrices(prices);
+        ArrayList<String> prices = getTescoPrices(linker.getProductNames());
+        linker.setTescoProductPrices(prices);
     }
-
-    public void createList()
+    */
+    public ArrayList<String> createList()
     {
         shopList = editText.getText().toString();
         ArrayList<String> itemsToSearchFor = new ArrayList<String>(Arrays.asList(shopList.split("[\\r\\n]+")));
         linker.setProductNames(itemsToSearchFor); //TODO error checking fix later
+        return itemsToSearchFor;
 
     }
 

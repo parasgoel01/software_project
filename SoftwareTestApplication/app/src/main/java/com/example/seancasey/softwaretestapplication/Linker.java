@@ -7,9 +7,13 @@ public interface Linker {
 
     void replaceFragments(int myFragment);
 
-    void setProductPrices(ArrayList<String> productPrices);
+    void setTescoProductPrices(ArrayList<String> productPrices);
 
-    ArrayList<String> getProductPrices();
+    ArrayList<String> getTescoProductPrices();
+
+    void setSuperValuProductPrices(ArrayList<String> productPrices);
+
+    ArrayList<String> getSuperValuProductPrices();
 
     void setProductNames(ArrayList<String> productNames);
 

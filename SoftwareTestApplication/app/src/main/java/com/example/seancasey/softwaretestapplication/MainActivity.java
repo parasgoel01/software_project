@@ -6,8 +6,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.internal.view.menu.ActionMenuItem;
-import android.view.WindowManager;
 
 import java.util.ArrayList;
 
@@ -22,7 +20,8 @@ public class MainActivity extends AppCompatActivity implements Linker {
     private DisplayFragment displayFragment;
 
     private ArrayList<String> productNames;
-    private ArrayList<String> productPrices;
+    private ArrayList<String> tescoProductPrices;
+    private ArrayList<String> superValuProductPrices;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,14 +88,24 @@ public class MainActivity extends AppCompatActivity implements Linker {
         }
     }
 
-    public void setProductPrices(ArrayList<String> productPrices)
+    public void setTescoProductPrices(ArrayList<String> productPrices)
     {
-        this.productPrices = productPrices;
+        this.tescoProductPrices = productPrices;
     }
 
-    public ArrayList<String> getProductPrices()
+    public ArrayList<String> getTescoProductPrices()
     {
-        return this.productPrices;
+        return this.tescoProductPrices;
+    }
+
+    public void setSuperValuProductPrices(ArrayList<String> productPrices)
+    {
+        this.superValuProductPrices = productPrices;
+    }
+
+    public ArrayList<String> getSuperValuProductPrices()
+    {
+        return this.superValuProductPrices;
     }
 
     public void setProductNames(ArrayList<String> productNames)

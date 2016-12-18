@@ -75,7 +75,7 @@ public class DisplayFragment extends Fragment {
     {
         double price;
         ArrayList<Double> priceInEuro =  new ArrayList<>();
-        for (String item:linker.getProductPrices())
+        for (String item:linker.getTescoProductPrices())
         {
             price = poundToEuro(Double.valueOf(item));
             price = round(price*100.0)/100.0;
