@@ -2,7 +2,6 @@ package com.example.seancasey.softwaretestapplication;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,12 +9,7 @@ import android.widget.Button;
 import android.widget.TableLayout;
 import android.widget.TextView;
 
-import java.util.ArrayList;
-
-import static com.example.seancasey.softwaretestapplication.MyValues.EURO_SYMBOL;
-import static com.example.seancasey.softwaretestapplication.MyValues.EXCHANGE_RATE;
 import static com.example.seancasey.softwaretestapplication.MyValues.MAX_CHARS;
-import static java.lang.Math.round;
 
 public class DisplayFragment extends Fragment {
 
