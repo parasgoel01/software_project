@@ -46,16 +46,6 @@ public class MainActivity extends AppCompatActivity implements Linker {
         replaceFragments(MyValues.LOAD_TYPE_LIST_FRAGMENT);
     }
 
-    /*public void replaceFragments()
-    {
-        typeListFragment = new TypeListFragment();
-        Fragment fragment;
-        fragment = typeListFragment;
-        fragmentManager.beginTransaction().replace(R.id.activity_main, typeListFragment).commit();
-        FragmentTransaction transaction = fragmentManager.beginTransaction();
-        transaction.replace(R.id.activity_main, fragment);
-    }*/
-
     public void replaceFragments(int myFragment)
     {
         fragmentManager = getSupportFragmentManager();

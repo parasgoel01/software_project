@@ -1,5 +1,6 @@
 package com.example.seancasey.softwaretestapplication;
 
+import android.app.ProgressDialog;
 import android.os.AsyncTask;
 
 import java.util.ArrayList;
@@ -15,10 +16,19 @@ public abstract class shopProductPrice extends AsyncTask<ArrayList<String>, Void
         return itemName.replaceAll("\\s+", "\\+");
     }
 
+    //private ProgressDialog dialog;
+
     protected void onPostExecute(ArrayList<String> result) //ASK
     {
-
+        /*if (dialog.isShowing())
+        {
+            dialog.dismiss();
+        }*/
     }
+    /*protected void onPreExecute() {
+        this.dialog.setMessage("loading...");
+        this.dialog.show();
+    }*/
 
     protected ArrayList<String> doInBackground(ArrayList<String>... params) {
 

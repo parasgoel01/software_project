@@ -28,8 +28,4 @@ public class FormatTescoPricesForDisplay extends FormatPricesForDisplay {
         return doublePrices;
     }
 
-    private double roundToNearestCent(double price) {
-        price = round(price*100.0)/100.0;
-        return price;
-    }
 }

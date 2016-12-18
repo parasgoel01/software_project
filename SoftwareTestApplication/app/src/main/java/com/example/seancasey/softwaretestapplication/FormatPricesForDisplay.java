@@ -30,7 +30,7 @@ public abstract class FormatPricesForDisplay {
         {
             totalCost+=price;
         }
-        return totalCost;
+        return roundToNearestCent(totalCost);
     }
 
     public abstract ArrayList<Double> getPricesAsDoubles(ArrayList<String> stringPrices);
@@ -43,5 +43,10 @@ public abstract class FormatPricesForDisplay {
             breakdownPrices +=  EURO_SYMBOL + price + "\n";
         }
         return breakdownPrices;
+    }
+
+    protected double roundToNearestCent(double price) {
+        price = round(price*100.0)/100.0;
+        return price;
     }
 }

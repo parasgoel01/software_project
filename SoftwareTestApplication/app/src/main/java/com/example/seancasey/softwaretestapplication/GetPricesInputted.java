@@ -12,7 +12,6 @@ public abstract class GetPricesInputted {
     public ArrayList<String> getPricesInputted(ArrayList<String> itemsToSearchFor)
     {
         ArrayList<String> prices = new ArrayList<>();
-        //TescoProductPrice tescoAsyncTask = new TescoProductPrice();
         shopProductPrice shopProductPrice = getShopProductPrice();
         try
         {

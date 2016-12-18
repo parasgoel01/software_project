@@ -1,7 +1,12 @@
 package com.example.seancasey.softwaretestapplication;
 
 import android.annotation.TargetApi;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Build;
+import android.util.Log;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -44,6 +49,11 @@ public class TescoProductPrice extends shopProductPrice {
             try {
                 JSONObject object = new JSONObject(responseBody);
                 JSONArray array = object.getJSONObject("uk").getJSONObject("ghs").getJSONObject("products").getJSONArray("results");
+                if (array.length() == 0)
+                {
+                    Log.d("abcd", "cannot find item"+fixedString); //ASK
+                }
+
                 JSONObject item = (JSONObject)array.get(0);
                 foundPrice = item.get("price").toString(); //ASK
 

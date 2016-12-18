@@ -60,7 +60,7 @@ public class DisplayFragment extends Fragment {
     private void displayProductDetails() {
         FormatTescoPricesForDisplay formatTescoPricesForDisplay = new FormatTescoPricesForDisplay();
         FormatSuperValuPricesForDisplay formatSuperValuPricesForDisplay = new FormatSuperValuPricesForDisplay();
-        
+
         displayTotalPrices(formatTescoPricesForDisplay, formatSuperValuPricesForDisplay);
         displayBreakdownProducts();
         displayBreakdownPrices(formatTescoPricesForDisplay, formatSuperValuPricesForDisplay);

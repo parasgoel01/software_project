@@ -1,7 +1,9 @@
 package com.example.seancasey.softwaretestapplication;
 
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,28 +21,34 @@ public class TypeListFragment extends Fragment {
     private View myInflatedView;
     private Linker linker;
 
-    private EditText editText;
-    private Button button2;
-    private String shopList;
+    private EditText editShopList;
+    private Button submitButton;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         myInflatedView = inflater.inflate(R.layout.fragment_typelist, container, false);
         linker = (Linker)getActivity();
-        button2 = (Button) myInflatedView.findViewById(R.id.button2);
-        editText = (EditText) myInflatedView.findViewById(R.id.editText);
+        submitButton = (Button) myInflatedView.findViewById(R.id.submitButton);
+        editShopList = (EditText) myInflatedView.findViewById(R.id.editShopList);
 
-        button2.setOnClickListener(new View.OnClickListener() {
+        submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity(), "Fetching prices. Please wait, this may take a while...", Toast.LENGTH_LONG).show();
-                ArrayList<String> itemsToSearchFor = createList();
-                ArrayList<String> tescoPrices = new TescoGetPricesInputted().getShopPrices(itemsToSearchFor);
-                ArrayList<String> superValuPrices = new SuperValuGetPricesInputted().getShopPrices(itemsToSearchFor);
-                setValuesForLinker(itemsToSearchFor, tescoPrices, superValuPrices);
-
-                linker.replaceFragments(LOAD_DISPLAY_FRAGMENT);
+                String shopList = editShopList.getText().toString();
+                if (shopList.equals(""))
+                {
+                    Toast.makeText(getActivity(), "No product entered", Toast.LENGTH_SHORT).show();
+                }
+                else
+                {
+                    Toast.makeText(getActivity(), "Fetching prices. Please wait, this may take a while...", Toast.LENGTH_LONG).show(); //ASK
+                    ArrayList<String> itemsToSearchFor = createList(shopList);
+                    ArrayList<String> tescoPrices = new TescoGetPricesInputted().getShopPrices(itemsToSearchFor);
+                    ArrayList<String> superValuPrices = new SuperValuGetPricesInputted().getShopPrices(itemsToSearchFor);
+                    setValuesForLinker(itemsToSearchFor, tescoPrices, superValuPrices);
+                    linker.replaceFragments(LOAD_DISPLAY_FRAGMENT);
+                }
             }
         });
 
@@ -53,13 +61,16 @@ public class TypeListFragment extends Fragment {
         linker.setSuperValuProductPrices(superValuPrices);
     }
 
-    public ArrayList<String> createList()
+    public ArrayList<String> createList(String shopList)
     {
-        shopList = editText.getText().toString();
         ArrayList<String> itemsToSearchFor = new ArrayList<String>(Arrays.asList(shopList.split("[\\r\\n]+")));
         linker.setProductNames(itemsToSearchFor); //TODO error checking fix later
         return itemsToSearchFor;
+    }
 
+    private String getListString()
+    {
+        return editShopList.getText().toString();
     }
 
 
