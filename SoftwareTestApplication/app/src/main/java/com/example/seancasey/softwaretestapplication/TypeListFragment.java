@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -33,6 +34,7 @@ public class TypeListFragment extends Fragment {
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Toast.makeText(getActivity(), "Fetching prices. Please wait, this may take a while...", Toast.LENGTH_LONG).show();
                 ArrayList<String> itemsToSearchFor = createList();
                 ArrayList<String> tescoPrices = new TescoGetPricesInputted().getShopPrices(itemsToSearchFor);
                 ArrayList<String> superValuPrices = new SuperValuGetPricesInputted().getShopPrices(itemsToSearchFor);

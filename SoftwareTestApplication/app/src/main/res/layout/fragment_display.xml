@@ -41,14 +41,12 @@
             android:layout_gravity="center">
 
             <TextView
-                android:text="TESCO PRICE"
                 android:layout_weight="1"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textAlignment="center"
                 android:id="@+id/tescoPriceView" />
 
             <TextView
-                android:text="SUPERVALU_PRICE"
                 android:layout_weight="1"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textAlignment="center"

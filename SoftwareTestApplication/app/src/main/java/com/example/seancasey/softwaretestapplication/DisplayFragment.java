@@ -2,6 +2,7 @@ package com.example.seancasey.softwaretestapplication;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,7 +22,6 @@ public class DisplayFragment extends Fragment {
     private View myInflatedView;
     private Linker linker;
 
-    private double totalPrice;
     private TextView tescoPriceView;
     private TextView superValuPriceView;
     private TableLayout breakdownTableLayout;
@@ -52,13 +52,32 @@ public class DisplayFragment extends Fragment {
             }
         });
 
-        tescoPriceView.setText(EURO_SYMBOL +String.valueOf(getTotalPrice(getPriceInEuro())));
-        superValuPriceView.setText(EURO_SYMBOL+String.valueOf(getTotalPrice(getPricesAsDoubles(linker.getSuperValuProductPrices()))));
-        productNameView.setText(getFormattedNames());
-        tescoBreakdownView.setText(getFormattedPrices(getPriceInEuro()));
-        superValuBreakdownView.setText(getFormattedPrices(getPricesAsDoubles(linker.getSuperValuProductPrices())));
+        displayProductDetails();
 
         return myInflatedView;
+    }
+
+    private void displayProductDetails() {
+        FormatTescoPricesForDisplay formatTescoPricesForDisplay = new FormatTescoPricesForDisplay();
+        FormatSuperValuPricesForDisplay formatSuperValuPricesForDisplay = new FormatSuperValuPricesForDisplay();
+        
+        displayTotalPrices(formatTescoPricesForDisplay, formatSuperValuPricesForDisplay);
+        displayBreakdownProducts();
+        displayBreakdownPrices(formatTescoPricesForDisplay, formatSuperValuPricesForDisplay);
+    }
+
+    private void displayBreakdownProducts() {
+        productNameView.setText(getFormattedNames());
+    }
+
+    private void displayBreakdownPrices(FormatTescoPricesForDisplay formatTescoPricesForDisplay, FormatSuperValuPricesForDisplay formatSuperValuPricesForDisplay) {
+        tescoBreakdownView.setText(formatTescoPricesForDisplay.getFormattedIndividualPrices(linker.getTescoProductPrices()));
+        superValuBreakdownView.setText(formatSuperValuPricesForDisplay.getFormattedIndividualPrices(linker.getSuperValuProductPrices()));
+    }
+
+    private void displayTotalPrices(FormatTescoPricesForDisplay formatTescoPricesForDisplay, FormatSuperValuPricesForDisplay formatSuperValuPricesForDisplay) {
+        tescoPriceView.setText(formatTescoPricesForDisplay.getFormattedTotalPrice(linker.getTescoProductPrices()));
+        superValuPriceView.setText(formatSuperValuPricesForDisplay.getFormattedTotalPrice(linker.getSuperValuProductPrices()));
     }
 
     private void togglePriceBreakdown()
@@ -76,51 +95,6 @@ public class DisplayFragment extends Fragment {
         }
     }
 
-    private ArrayList<Double> getPriceInEuro()
-    {
-        double price;
-        ArrayList<Double> priceInEuro =  new ArrayList<>();
-        for (String item:linker.getTescoProductPrices())
-        {
-            price = poundToEuro(Double.valueOf(item));
-            price = roundToNearestCent(price);
-            priceInEuro.add(price);
-        }
-        return priceInEuro;
-    }
-
-    private ArrayList<Double> getPricesAsDoubles(ArrayList<String> stringPrices)
-    {
-        ArrayList<Double> doublePrices = new ArrayList<>();
-        for (String stringPrice:stringPrices)
-        {
-            double doublePrice = Double.valueOf(stringPrice);
-            doublePrices.add(doublePrice);
-        }
-        return doublePrices;
-    }
-
-    private double roundToNearestCent(double price) {
-        price = round(price*100.0)/100.0;
-        return price;
-    }
-
-    private double getTotalPrice(ArrayList<Double> prices)
-    {
-        //ArrayList<Double>PriceInEuro = getPriceInEuro();
-        double totalPrice = 0.0;
-        for (double price:prices)
-        {
-            totalPrice += price;
-        }
-        return totalPrice;
-    }
-
-    private double poundToEuro(double pound)
-    {
-        return pound * EXCHANGE_RATE;
-    }
-
     private String getFormattedNames()
     {
         String cutoffPrices = "";
@@ -136,16 +110,6 @@ public class DisplayFragment extends Fragment {
             }
         }
         return cutoffPrices;
-    }
-
-    private String getFormattedPrices(ArrayList<Double> prices)
-    {
-        String breakdownPrices = "";
-        for (double price:prices)
-        {
-            breakdownPrices +=  "€" + price + "\n";
-        }
-        return breakdownPrices;
     }
 
 
