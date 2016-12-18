@@ -13,7 +13,7 @@ public abstract class GetPricesInputted {
     {
         ArrayList<String> prices = new ArrayList<>();
         //TescoProductPrice tescoAsyncTask = new TescoProductPrice();
-        shopProductPrice shopProductPrice = getShopAsyncTask();
+        shopProductPrice shopProductPrice = getShopProductPrice();
         try
         {
             prices = shopProductPrice.execute(itemsToSearchFor).get();
@@ -29,7 +29,7 @@ public abstract class GetPricesInputted {
         return prices;
     }
 
-    public abstract shopProductPrice getShopAsyncTask();
+    public abstract shopProductPrice getShopProductPrice();
     public abstract ArrayList<String> getShopPrices(ArrayList<String> itemsToSearchFor);
 
 }

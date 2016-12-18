@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import static com.example.seancasey.softwaretestapplication.MyValues.EURO_SYMBOL;
 import static com.example.seancasey.softwaretestapplication.MyValues.EXCHANGE_RATE;
 import static com.example.seancasey.softwaretestapplication.MyValues.MAX_CHARS;
 import static java.lang.Math.round;
@@ -22,11 +23,12 @@ public class DisplayFragment extends Fragment {
 
     private double totalPrice;
     private TextView tescoPriceView;
+    private TextView superValuPriceView;
     private TableLayout breakdownTableLayout;
     private Button breakdownButton;
     private TextView productNameView;
     private TextView tescoBreakdownView;
-    private TextView svBreakdownView;
+    private TextView superValuBreakdownView;
 
 
     @Override
@@ -36,11 +38,12 @@ public class DisplayFragment extends Fragment {
         linker = (Linker)getActivity();
 
         tescoPriceView = (TextView) myInflatedView.findViewById(R.id.tescoPriceView);
+        superValuPriceView = (TextView) myInflatedView.findViewById(R.id.superValuPriceView);
         breakdownTableLayout = (TableLayout) myInflatedView.findViewById(R.id.breakdownTableLayout);
         breakdownButton = (Button) myInflatedView.findViewById(R.id.breakdownButton);
         productNameView = (TextView) myInflatedView.findViewById(R.id.productNameView);
         tescoBreakdownView = (TextView)myInflatedView.findViewById(R.id.tescoBreakdownView);
-        svBreakdownView = (TextView)myInflatedView.findViewById(R.id.svBreakdownView);
+        superValuBreakdownView = (TextView)myInflatedView.findViewById(R.id.superValuBreakdownView);
 
         breakdownButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,9 +52,11 @@ public class DisplayFragment extends Fragment {
             }
         });
 
-        tescoPriceView.setText("€"+String.valueOf(getTotalPrice()));
+        tescoPriceView.setText(EURO_SYMBOL +String.valueOf(getTotalPrice(getPriceInEuro())));
+        superValuPriceView.setText(EURO_SYMBOL+String.valueOf(getTotalPrice(getPricesAsDoubles(linker.getSuperValuProductPrices()))));
         productNameView.setText(getFormattedNames());
-        tescoBreakdownView.setText(getFormattedPrices());
+        tescoBreakdownView.setText(getFormattedPrices(getPriceInEuro()));
+        superValuBreakdownView.setText(getFormattedPrices(getPricesAsDoubles(linker.getSuperValuProductPrices())));
 
         return myInflatedView;
     }
@@ -78,17 +83,33 @@ public class DisplayFragment extends Fragment {
         for (String item:linker.getTescoProductPrices())
         {
             price = poundToEuro(Double.valueOf(item));
-            price = round(price*100.0)/100.0;
+            price = roundToNearestCent(price);
             priceInEuro.add(price);
         }
         return priceInEuro;
     }
 
-    private double getTotalPrice()
+    private ArrayList<Double> getPricesAsDoubles(ArrayList<String> stringPrices)
     {
-        ArrayList<Double>PriceInEuro = getPriceInEuro();
+        ArrayList<Double> doublePrices = new ArrayList<>();
+        for (String stringPrice:stringPrices)
+        {
+            double doublePrice = Double.valueOf(stringPrice);
+            doublePrices.add(doublePrice);
+        }
+        return doublePrices;
+    }
+
+    private double roundToNearestCent(double price) {
+        price = round(price*100.0)/100.0;
+        return price;
+    }
+
+    private double getTotalPrice(ArrayList<Double> prices)
+    {
+        //ArrayList<Double>PriceInEuro = getPriceInEuro();
         double totalPrice = 0.0;
-        for (double price:PriceInEuro)
+        for (double price:prices)
         {
             totalPrice += price;
         }
@@ -117,14 +138,14 @@ public class DisplayFragment extends Fragment {
         return cutoffPrices;
     }
 
-    private String getFormattedPrices()
+    private String getFormattedPrices(ArrayList<Double> prices)
     {
-        String tescoBreakdownPrices = "";
-        for (double price:getPriceInEuro())
+        String breakdownPrices = "";
+        for (double price:prices)
         {
-            tescoBreakdownPrices +=  "€" + price + "\n";
+            breakdownPrices +=  "€" + price + "\n";
         }
-        return tescoBreakdownPrices;
+        return breakdownPrices;
     }
 
 

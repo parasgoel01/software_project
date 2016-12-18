@@ -1,5 +1,7 @@
 package com.example.seancasey.softwaretestapplication;
 
+import android.util.Log;
+
 import java.io.IOException;
 import java.net.URL;
 import java.net.URLConnection;
@@ -23,6 +25,7 @@ public class SuperValuProductPrice extends shopProductPrice {
 		try {
 			Scanner scanner = getScanner(fixedString);
 			price = getPriceFromScanner(scanner);
+			//Log.d("SVPRICE", price);
 
 		}catch ( Exception ex ) {
 			ex.printStackTrace();

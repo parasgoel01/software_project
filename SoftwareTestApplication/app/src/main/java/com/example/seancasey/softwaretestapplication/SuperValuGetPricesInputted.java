@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class SuperValuGetPricesInputted extends GetPricesInputted {
 
-    public shopProductPrice getShopAsyncTask()
+    public shopProductPrice getShopProductPrice()
     {
         return new SuperValuProductPrice();
     }

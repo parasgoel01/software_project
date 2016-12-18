@@ -34,45 +34,23 @@ public class TypeListFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 ArrayList<String> itemsToSearchFor = createList();
-                //ArrayList<String> tescoPrices = getTescoPrices(itemsToSearchFor);
-                //ArrayList<String> superValuPrices = getSuperValuPrices(itemsToSearchFor);
                 ArrayList<String> tescoPrices = new TescoGetPricesInputted().getShopPrices(itemsToSearchFor);
                 ArrayList<String> superValuPrices = new SuperValuGetPricesInputted().getShopPrices(itemsToSearchFor);
-                linker.setProductNames(itemsToSearchFor);
-                linker.setTescoProductPrices(tescoPrices);
-                linker.setSuperValuProductPrices(superValuPrices);
-                //getPriceList();
+                setValuesForLinker(itemsToSearchFor, tescoPrices, superValuPrices);
 
                 linker.replaceFragments(LOAD_DISPLAY_FRAGMENT);
             }
         });
 
-        SuperValuProductPrice superValuAsyncTask = new SuperValuProductPrice();
-
         return myInflatedView;
     }
 
-    /*public ArrayList<String> getTescoPrices(ArrayList<String> itemsToSearchFor)
-    {
-        TescoGetPricesInputted tescoGetPricesInputted = new TescoGetPricesInputted(); //ASK (static?)
-        return tescoGetPricesInputted.getPricesInputted(itemsToSearchFor);
+    private void setValuesForLinker(ArrayList<String> itemsToSearchFor, ArrayList<String> tescoPrices, ArrayList<String> superValuPrices) {
+        linker.setProductNames(itemsToSearchFor);
+        linker.setTescoProductPrices(tescoPrices);
+        linker.setSuperValuProductPrices(superValuPrices);
     }
-    */
-    /*
-    public ArrayList<String> getSuperValuPrices(ArrayList<String> itemsToSearchFor)
-    {
-        SuperValuGetPricesInputted superValuGetPricesInputted = new SuperValuGetPricesInputted(); //ASK (static?)
-        return superValuGetPricesInputted.getPricesInputted(itemsToSearchFor);
-    }
-    */
 
-    /*
-    public void getPriceList()
-    {
-        ArrayList<String> prices = getTescoPrices(linker.getProductNames());
-        linker.setTescoProductPrices(prices);
-    }
-    */
     public ArrayList<String> createList()
     {
         shopList = editText.getText().toString();

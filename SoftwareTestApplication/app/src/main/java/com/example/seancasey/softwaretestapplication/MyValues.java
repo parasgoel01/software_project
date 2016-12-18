@@ -20,4 +20,5 @@ public final class MyValues {
 
     public static final String SUPERVALU_URL_START = "https://shop.supervalu.ie/shopping/search/allaisles?q=";
     public static final String SUPERVALU_PRICE_REGEX = ".*?(\\d+(\\.\\d+)*).*";
+    public static final String EURO_SYMBOL = "€";
 }
