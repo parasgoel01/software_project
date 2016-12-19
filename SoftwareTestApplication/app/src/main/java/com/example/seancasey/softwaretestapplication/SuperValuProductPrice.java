@@ -23,7 +23,6 @@ public class SuperValuProductPrice extends ShopProductPrice {
 		try {
 			Scanner scanner = getScanner(fixedString);
 			price = getPriceFromScanner(scanner);
-			//Log.d("SVPRICE", price);
 
 		}catch ( Exception ex ) {
 			ex.printStackTrace();

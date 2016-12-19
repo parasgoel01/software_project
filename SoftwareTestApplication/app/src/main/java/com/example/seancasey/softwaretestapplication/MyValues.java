@@ -17,7 +17,6 @@ public final class MyValues {
     public static final String TESCO_URL_START = "https://dev.tescolabs.com/grocery/products/?query=";
     public static final String TESCO_URL_END = "&offset=0&limit=1";
 
-
     public static final String SUPERVALU_URL_START = "https://shop.supervalu.ie/shopping/search/allaisles?q=";
     public static final String SUPERVALU_PRICE_REGEX = ".*?(\\d+(\\.\\d+)*).*";
     public static final String EURO_SYMBOL = "€";

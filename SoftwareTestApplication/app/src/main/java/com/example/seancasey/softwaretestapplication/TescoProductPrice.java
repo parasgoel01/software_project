@@ -32,9 +32,9 @@ public class TescoProductPrice extends ShopProductPrice {
 
         } catch (IOException e) {
             // TODO Auto-generated catch block
-            e.printStackTrace(); // ASK
+            e.printStackTrace();
         }
-        return productPriceFound; //ASK
+        return productPriceFound;
     }
 
     @TargetApi(Build.VERSION_CODES.KITKAT)
@@ -48,7 +48,6 @@ public class TescoProductPrice extends ShopProductPrice {
                 JSONArray array = object.getJSONObject("uk").getJSONObject("ghs").getJSONObject("products").getJSONArray("results");
                 if (array.length() == 0)
                 {
-                    Log.d("abcd", "cannot find item"+fixedString); //ASK
                     return foundPrice;
                 }
 

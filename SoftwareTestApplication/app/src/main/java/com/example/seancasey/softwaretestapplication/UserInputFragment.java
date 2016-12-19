@@ -1,5 +1,6 @@
 package com.example.seancasey.softwaretestapplication;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -44,13 +45,15 @@ public class UserInputFragment extends Fragment {
                 ArrayList<String> itemsToSearchFor = createList(shopListString);
 
                 ArrayList<String> tescoPrices = new RetrieveTescoPriceList().productPrices(itemsToSearchFor);
-                ArrayList<String> superValuPrices = new RetrieveSuperValuPriceList().productPrices(itemsToSearchFor);
 
                 if (tescoPrices.contains(NO_PRICE_FOUND))
                 {
                     findInvalidItem(itemsToSearchFor, tescoPrices);
                     return;
                 }
+
+                ArrayList<String> superValuPrices = new RetrieveSuperValuPriceList().productPrices(itemsToSearchFor);
+
                 setValuesForLinker(itemsToSearchFor, tescoPrices, superValuPrices);
                 linker.replaceFragments(LOAD_DISPLAY_FRAGMENT);
 
@@ -78,6 +81,11 @@ public class UserInputFragment extends Fragment {
         int wrongIndex = productPrices.indexOf(NO_PRICE_FOUND);
         String wrongItem = itemsToSearchFor.get(wrongIndex);
         Toast.makeText(getActivity(), "Invalid product: " + wrongItem, Toast.LENGTH_LONG).show();
+    }
+
+    public Context getContext()
+    {
+        return getActivity();
     }
 
 
