@@ -10,13 +10,13 @@ import static org.junit.Assert.*;
 public class TescoProductPriceTest {
     @Test
     public void getPricesMilkTest() throws Exception {
-        assertEquals("Expected cost of milk = 1.0", "1.0", new TescoProductPrice().getPrices("milk"));
+        assertEquals("Expected cost of milk = 1.0", "1.0", new TescoProductPrice().getIndividualProductPrice("milk"));
 
     }
 
     @Test
     public void getPricesBreadTest() throws Exception {
-        assertEquals("Expected cost of bread = 0.9", "0.9", new TescoProductPrice().getPrices("bread"));
+        assertEquals("Expected cost of bread = 0.9", "0.9", new TescoProductPrice().getIndividualProductPrice("bread"));
 
     }
 

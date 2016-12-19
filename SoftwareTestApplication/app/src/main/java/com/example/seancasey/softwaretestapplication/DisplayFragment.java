@@ -61,12 +61,12 @@ public class DisplayFragment extends Fragment {
     }
 
     private void displayBreakdownProducts() {
-        productNameView.setText(getFormattedNames());
+        productNameView.setText(getFormattedProductNames());
     }
 
     private void displayBreakdownPrices(FormatTescoPricesForDisplay formatTescoPricesForDisplay, FormatSuperValuPricesForDisplay formatSuperValuPricesForDisplay) {
-        tescoBreakdownView.setText(formatTescoPricesForDisplay.getFormattedIndividualPrices(linker.getTescoProductPrices()));
-        superValuBreakdownView.setText(formatSuperValuPricesForDisplay.getFormattedIndividualPrices(linker.getSuperValuProductPrices()));
+        tescoBreakdownView.setText(formatTescoPricesForDisplay.getFormattedBreakdownPrices(linker.getTescoProductPrices()));
+        superValuBreakdownView.setText(formatSuperValuPricesForDisplay.getFormattedBreakdownPrices(linker.getSuperValuProductPrices()));
     }
 
     private void displayTotalPrices(FormatTescoPricesForDisplay formatTescoPricesForDisplay, FormatSuperValuPricesForDisplay formatSuperValuPricesForDisplay) {
@@ -89,7 +89,7 @@ public class DisplayFragment extends Fragment {
         }
     }
 
-    private String getFormattedNames()
+    private String getFormattedProductNames()
     {
         String cutoffPrices = "";
         for (String item:linker.getProductNames())

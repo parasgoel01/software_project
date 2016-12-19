@@ -11,12 +11,11 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements Linker {
 
-    //private method2
     private int currentFragment; //to keep track of what fragment we're in now
 
     private FragmentManager fragmentManager; //for switching screens
     private Fragment fragment;
-    private TypeListFragment typeListFragment;
+    private UserInputFragment userInputFragment;
     private DisplayFragment displayFragment;
 
     private ArrayList<String> productNames;
@@ -27,21 +26,11 @@ public class MainActivity extends AppCompatActivity implements Linker {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //MORE STUFF
 
-        //setup fragment method2...
-        typeListFragment = new TypeListFragment();
+        userInputFragment = new UserInputFragment();
         displayFragment = new DisplayFragment();
 
-        //launch the first fragment
-        //fragment = typeListFragment;
         fragment = new Fragment();
-
-        // Got this method2 online...
-        //fragmentManager = getSupportFragmentManager();
-        //FragmentTransaction transaction = fragmentManager.beginTransaction();
-        //transaction.replace(R.id.activity_main, fragment);
-        //transaction.commit();
 
         replaceFragments(MyValues.LOAD_TYPE_LIST_FRAGMENT);
     }
@@ -52,14 +41,12 @@ public class MainActivity extends AppCompatActivity implements Linker {
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         if(myFragment == MyValues.LOAD_TYPE_LIST_FRAGMENT)
         {
-            fragment = typeListFragment;
-            //transaction.replace(R.id.activity_main, this.typeListFragment);
+            fragment = userInputFragment;
             currentFragment = MyValues.CURRENT_TYPE_LIST_FRAGMENT;
         }
         else if(myFragment == MyValues.LOAD_DISPLAY_FRAGMENT)
         {
             fragment = displayFragment;
-            //transaction.replace(R.id.activity_main, this.displayFragment);
             currentFragment = MyValues.CURRENT_DISPLAY_FRAGMENT;
         }
         transaction.replace(R.id.activity_main, fragment);

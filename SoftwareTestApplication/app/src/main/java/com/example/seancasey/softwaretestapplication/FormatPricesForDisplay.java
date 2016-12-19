@@ -17,7 +17,7 @@ public abstract class FormatPricesForDisplay {
         return EURO_SYMBOL + getTotalPrice(doublePrices);
     }
 
-    public String getFormattedIndividualPrices(ArrayList<String> stringPrices)
+    public String getFormattedBreakdownPrices(ArrayList<String> stringPrices)
     {
         ArrayList<Double> doublePrices = getPricesAsDoubles(stringPrices);
         return getFormattedPrices(doublePrices);

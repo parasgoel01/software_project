@@ -1,7 +1,5 @@
 package com.example.seancasey.softwaretestapplication;
 
-import android.util.Log;
-
 import java.io.IOException;
 import java.net.URL;
 import java.net.URLConnection;
@@ -16,9 +14,9 @@ import static com.example.seancasey.softwaretestapplication.MyValues.SUPERVALU_U
  * Created by Niamh on 13/12/2016.
  */
 
-public class SuperValuProductPrice extends shopProductPrice {
+public class SuperValuProductPrice extends ShopProductPrice {
 
-	public String getPrices(String itemName)
+	public String getIndividualProductPrice(String itemName)
 	{
 		String fixedString = fixString(itemName);
 		String price = "";

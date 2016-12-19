@@ -1,12 +1,8 @@
 package com.example.seancasey.softwaretestapplication;
 
 import android.annotation.TargetApi;
-import android.app.AlertDialog;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.os.Build;
 import android.util.Log;
-import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -23,25 +19,25 @@ import static com.example.seancasey.softwaretestapplication.MyValues.TESCO_SUBSC
 import static com.example.seancasey.softwaretestapplication.MyValues.TESCO_URL_END;
 import static com.example.seancasey.softwaretestapplication.MyValues.TESCO_URL_START;
 
-public class TescoProductPrice extends shopProductPrice {
+public class TescoProductPrice extends ShopProductPrice {
 
     @TargetApi(Build.VERSION_CODES.KITKAT)
-    public String getPrices(String itemName)
+    public String getIndividualProductPrice(String itemName)
     {
-        String foundPrice = "";
+        String productPriceFound = "";
         String fixedString = fixString(itemName);
         try {
-            foundPrice = getFoundPrice(fixedString);
+            productPriceFound = getProductPrice(fixedString);
 
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace(); // ASK
         }
-        return foundPrice; //ASK
+        return productPriceFound; //ASK
     }
 
     @TargetApi(Build.VERSION_CODES.KITKAT)
-    private String getFoundPrice(String fixedString) throws IOException {
+    private String getProductPrice(String fixedString) throws IOException {
         String foundPrice = "";
         InputStream response = getResponse(fixedString);
         try (Scanner scanner = new Scanner(response)) {

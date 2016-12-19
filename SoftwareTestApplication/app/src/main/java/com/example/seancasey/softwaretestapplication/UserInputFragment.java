@@ -1,9 +1,7 @@
 package com.example.seancasey.softwaretestapplication;
 
 import android.os.Bundle;
-import android.os.SystemClock;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +14,7 @@ import java.util.Arrays;
 
 import static com.example.seancasey.softwaretestapplication.MyValues.LOAD_DISPLAY_FRAGMENT;
 
-public class TypeListFragment extends Fragment {
+public class UserInputFragment extends Fragment {
 
     private View myInflatedView;
     private Linker linker;
@@ -27,7 +25,7 @@ public class TypeListFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        myInflatedView = inflater.inflate(R.layout.fragment_typelist, container, false);
+        myInflatedView = inflater.inflate(R.layout.fragment_userinput, container, false);
         linker = (Linker)getActivity();
         submitButton = (Button) myInflatedView.findViewById(R.id.submitButton);
         editShopList = (EditText) myInflatedView.findViewById(R.id.editShopList);
@@ -35,17 +33,19 @@ public class TypeListFragment extends Fragment {
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String shopList = editShopList.getText().toString();
-                if (shopList.equals(""))
+                String shopListString = editShopList.getText().toString();
+                if (shopListString.equals(""))
                 {
                     Toast.makeText(getActivity(), "No product entered", Toast.LENGTH_SHORT).show();
                 }
                 else
                 {
                     Toast.makeText(getActivity(), "Fetching prices. Please wait, this may take a while...", Toast.LENGTH_LONG).show(); //ASK
-                    ArrayList<String> itemsToSearchFor = createList(shopList);
-                    ArrayList<String> tescoPrices = new TescoGetPricesInputted().getShopPrices(itemsToSearchFor);
-                    ArrayList<String> superValuPrices = new SuperValuGetPricesInputted().getShopPrices(itemsToSearchFor);
+                    ArrayList<String> itemsToSearchFor = createList(shopListString);
+
+                    ArrayList<String> tescoPrices = new RetrieveTescoPriceList().productPrices(itemsToSearchFor);
+                    ArrayList<String> superValuPrices = new RetrieveSuperValuPriceList().productPrices(itemsToSearchFor);
+
                     setValuesForLinker(itemsToSearchFor, tescoPrices, superValuPrices);
                     linker.replaceFragments(LOAD_DISPLAY_FRAGMENT);
                 }
@@ -66,11 +66,6 @@ public class TypeListFragment extends Fragment {
         ArrayList<String> itemsToSearchFor = new ArrayList<String>(Arrays.asList(shopList.split("[\\r\\n]+")));
         linker.setProductNames(itemsToSearchFor); //TODO error checking fix later
         return itemsToSearchFor;
-    }
-
-    private String getListString()
-    {
-        return editShopList.getText().toString();
     }
 
 
