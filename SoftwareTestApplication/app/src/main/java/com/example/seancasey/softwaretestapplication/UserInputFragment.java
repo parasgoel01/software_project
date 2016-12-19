@@ -48,11 +48,20 @@ public class UserInputFragment extends Fragment {
 
                 if (tescoPrices.contains(NO_PRICE_FOUND))
                 {
-                    findInvalidItem(itemsToSearchFor, tescoPrices);
+                    String wrongItem = findInvalidItem(itemsToSearchFor, tescoPrices);
+                    Toast.makeText(getActivity(), "Invalid product: " + wrongItem, Toast.LENGTH_LONG).show();
                     return;
                 }
 
                 ArrayList<String> superValuPrices = new RetrieveSuperValuPriceList().productPrices(itemsToSearchFor);
+                if (superValuPrices.contains(NO_PRICE_FOUND))
+                {
+                    String wrongItem = findInvalidItem(itemsToSearchFor, superValuPrices);
+                    Toast.makeText(getActivity(), "Invalid product: " + wrongItem, Toast.LENGTH_LONG).show();
+
+                    return;
+                }
+
 
                 setValuesForLinker(itemsToSearchFor, tescoPrices, superValuPrices);
                 linker.replaceFragments(LOAD_DISPLAY_FRAGMENT);
@@ -71,16 +80,13 @@ public class UserInputFragment extends Fragment {
 
     public ArrayList<String> createList(String shopList)
     {
-        ArrayList<String> itemsToSearchFor = new ArrayList<String>(Arrays.asList(shopList.split("[\\r\\n]+")));
-        linker.setProductNames(itemsToSearchFor); //TODO error checking fix later
-        return itemsToSearchFor;
+        return new ArrayList<String>(Arrays.asList(shopList.split("[\\r\\n]+")));
     }
 
-    private void findInvalidItem(ArrayList<String> itemsToSearchFor, ArrayList<String> productPrices)
+    public String findInvalidItem(ArrayList<String> itemsToSearchFor, ArrayList<String> productPrices)
     {
         int wrongIndex = productPrices.indexOf(NO_PRICE_FOUND);
-        String wrongItem = itemsToSearchFor.get(wrongIndex);
-        Toast.makeText(getActivity(), "Invalid product: " + wrongItem, Toast.LENGTH_LONG).show();
+        return itemsToSearchFor.get(wrongIndex);
     }
 
     public Context getContext()

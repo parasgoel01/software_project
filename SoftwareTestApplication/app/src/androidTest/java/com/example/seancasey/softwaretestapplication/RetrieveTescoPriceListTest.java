@@ -74,4 +74,34 @@ public class RetrieveTescoPriceListTest {
         assertEquals("Expect the list of prices to be equal", expectedPrices, actualPrices);
     }
 
+    @Test
+    public void productPricesLongListTest() throws Exception {
+        ArrayList<String> itemsToSearchFor = new ArrayList<>();
+        itemsToSearchFor.add("bread");
+        itemsToSearchFor.add("milk");
+        itemsToSearchFor.add("watermelons");
+        itemsToSearchFor.add("coke");
+        itemsToSearchFor.add("apples");
+        itemsToSearchFor.add("bananas");
+        itemsToSearchFor.add("pepsi");
+        itemsToSearchFor.add("sprite");
+        itemsToSearchFor.add("strawberry");
+        itemsToSearchFor.add("mango");
+
+        ArrayList<String> actualPrices = new RetrieveTescoPriceList().productPrices(itemsToSearchFor);
+        ArrayList<String> expectedPrices = new ArrayList<>();
+        expectedPrices.add("0.9");
+        expectedPrices.add("1.0");
+        expectedPrices.add("0.5");
+        expectedPrices.add("1.66");
+        expectedPrices.add("1.50");
+        expectedPrices.add("0.13");
+        expectedPrices.add("1.0");
+        expectedPrices.add("3.19");
+        expectedPrices.add("2.0");
+        expectedPrices.add("1.0");
+
+        assertEquals("Expect the list of prices to be equal", expectedPrices, actualPrices);
+    }
+
 }

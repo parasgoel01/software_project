@@ -7,6 +7,7 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static com.example.seancasey.softwaretestapplication.MyValues.NO_PRICE_FOUND;
 import static com.example.seancasey.softwaretestapplication.MyValues.SUPERVALU_PRICE_REGEX;
 import static com.example.seancasey.softwaretestapplication.MyValues.SUPERVALU_URL_START;
 
@@ -19,7 +20,7 @@ public class SuperValuProductPrice extends ShopProductPrice {
 	public String getIndividualProductPrice(String itemName)
 	{
 		String fixedString = fixString(itemName);
-		String price = "";
+		String price = NO_PRICE_FOUND;
 		try {
 			Scanner scanner = getScanner(fixedString);
 			price = getPriceFromScanner(scanner);
@@ -37,7 +38,7 @@ public class SuperValuProductPrice extends ShopProductPrice {
 
 	private static String getPriceFromScanner(Scanner scanner)
 	{
-		String price = "";
+		String price = NO_PRICE_FOUND;
 		while (scanner.hasNextLine())
 		{
 			final String fromHtml = scanner.nextLine();
@@ -62,6 +63,4 @@ public class SuperValuProductPrice extends ShopProductPrice {
 		}
 		return price;
 	}
-
-
 }

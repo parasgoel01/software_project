@@ -25,7 +25,7 @@ public class TescoProductPrice extends ShopProductPrice {
     @TargetApi(Build.VERSION_CODES.KITKAT)
     public String getIndividualProductPrice(String itemName)
     {
-        String productPriceFound = "";
+        String productPriceFound = NO_PRICE_FOUND;
         String fixedString = fixString(itemName);
         try {
             productPriceFound = getProductPrice(fixedString);
