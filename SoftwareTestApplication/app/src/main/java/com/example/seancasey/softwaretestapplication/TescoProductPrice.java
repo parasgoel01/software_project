@@ -14,6 +14,7 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.Scanner;
 
+import static com.example.seancasey.softwaretestapplication.MyValues.NO_PRICE_FOUND;
 import static com.example.seancasey.softwaretestapplication.MyValues.SUBSCRIPTION_KEY_VALUE;
 import static com.example.seancasey.softwaretestapplication.MyValues.TESCO_SUBSCRIPTION_KEY;
 import static com.example.seancasey.softwaretestapplication.MyValues.TESCO_URL_END;
@@ -38,7 +39,7 @@ public class TescoProductPrice extends ShopProductPrice {
 
     @TargetApi(Build.VERSION_CODES.KITKAT)
     private String getProductPrice(String fixedString) throws IOException {
-        String foundPrice = "";
+        String foundPrice = NO_PRICE_FOUND;
         InputStream response = getResponse(fixedString);
         try (Scanner scanner = new Scanner(response)) {
             String responseBody = getResponseBody(scanner);
@@ -48,6 +49,7 @@ public class TescoProductPrice extends ShopProductPrice {
                 if (array.length() == 0)
                 {
                     Log.d("abcd", "cannot find item"+fixedString); //ASK
+                    return foundPrice;
                 }
 
                 JSONObject item = (JSONObject)array.get(0);

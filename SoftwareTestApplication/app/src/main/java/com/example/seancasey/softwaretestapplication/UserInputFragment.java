@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import static com.example.seancasey.softwaretestapplication.MyValues.LOAD_DISPLAY_FRAGMENT;
+import static com.example.seancasey.softwaretestapplication.MyValues.NO_PRICE_FOUND;
 
 public class UserInputFragment extends Fragment {
 
@@ -34,21 +35,25 @@ public class UserInputFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 String shopListString = editShopList.getText().toString();
-                if (shopListString.equals(""))
+                if (shopListString.trim().isEmpty())
                 {
                     Toast.makeText(getActivity(), "No product entered", Toast.LENGTH_SHORT).show();
+                    return;
                 }
-                else
+                //Toast.makeText(getActivity(), "Fetching prices. Please wait, this may take a while...", Toast.LENGTH_LONG).show(); //ASK
+                ArrayList<String> itemsToSearchFor = createList(shopListString);
+
+                ArrayList<String> tescoPrices = new RetrieveTescoPriceList().productPrices(itemsToSearchFor);
+                ArrayList<String> superValuPrices = new RetrieveSuperValuPriceList().productPrices(itemsToSearchFor);
+
+                if (tescoPrices.contains(NO_PRICE_FOUND))
                 {
-                    Toast.makeText(getActivity(), "Fetching prices. Please wait, this may take a while...", Toast.LENGTH_LONG).show(); //ASK
-                    ArrayList<String> itemsToSearchFor = createList(shopListString);
-
-                    ArrayList<String> tescoPrices = new RetrieveTescoPriceList().productPrices(itemsToSearchFor);
-                    ArrayList<String> superValuPrices = new RetrieveSuperValuPriceList().productPrices(itemsToSearchFor);
-
-                    setValuesForLinker(itemsToSearchFor, tescoPrices, superValuPrices);
-                    linker.replaceFragments(LOAD_DISPLAY_FRAGMENT);
+                    findInvalidItem(itemsToSearchFor, tescoPrices);
+                    return;
                 }
+                setValuesForLinker(itemsToSearchFor, tescoPrices, superValuPrices);
+                linker.replaceFragments(LOAD_DISPLAY_FRAGMENT);
+
             }
         });
 
@@ -66,6 +71,13 @@ public class UserInputFragment extends Fragment {
         ArrayList<String> itemsToSearchFor = new ArrayList<String>(Arrays.asList(shopList.split("[\\r\\n]+")));
         linker.setProductNames(itemsToSearchFor); //TODO error checking fix later
         return itemsToSearchFor;
+    }
+
+    private void findInvalidItem(ArrayList<String> itemsToSearchFor, ArrayList<String> productPrices)
+    {
+        int wrongIndex = productPrices.indexOf(NO_PRICE_FOUND);
+        String wrongItem = itemsToSearchFor.get(wrongIndex);
+        Toast.makeText(getActivity(), "Invalid product: " + wrongItem, Toast.LENGTH_LONG).show();
     }
 
 

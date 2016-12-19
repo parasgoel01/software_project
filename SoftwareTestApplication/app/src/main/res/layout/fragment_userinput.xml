@@ -2,56 +2,67 @@
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
+    android:layout_height="fill_parent"
+    android:background="@color/White">
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/home_content"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.seancasey.softwaretestapplication.UserInputFragment">
+    tools:context="com.example.seancasey.softwaretestapplication.UserInputFragment"
+    android:background="@color/White">
 
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/app_icon3"
+        android:layout_centerInParent="true"
+        android:gravity="top|center"
+        android:layout_gravity="top|center"
+        android:layout_alignParentTop="true"
+        android:paddingBottom="40dp"/>
 
     <EditText
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text=""
         android:ems="10"
-        android:gravity="top|center"
         android:id="@+id/editShopList"
         android:inputType="textMultiLine"
         android:layout_below="@+id/textView"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginLeft="52dp"
-        android:layout_marginStart="52dp"
-        android:hint="Type one item per line...\neg\nmilk\neggs\nwatermelons" />
+        android:gravity="start"
+        android:hint="Type one item per line...\ne.g.\nmilk\neggs"
+        android:textAlignment="center" />
 
     <Button
         android:text="Submit"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/editShopList"
         android:layout_alignRight="@+id/textView"
         android:layout_alignEnd="@+id/textView"
-        android:layout_marginRight="61dp"
-        android:layout_marginEnd="61dp"
-        android:layout_marginTop="29dp"
+
         android:id="@+id/submitButton" />
 
     <TextView
-        android:text="TYPE YOUR LIST HERE"
+        android:text="Shopping List"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif"
         android:id="@id/textView"
-        android:textSize="30sp"
+        android:textSize="25sp"
         android:textStyle="normal|bold"
         android:gravity="top|center"
         android:layout_gravity="top|center"
-        android:layout_alignParentTop="true"
+        android:paddingTop="40dp"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/imageView" />
 
 </RelativeLayout>
     </ScrollView>
