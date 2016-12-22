@@ -88,12 +88,4 @@ public class UserInputFragment extends Fragment {
         return itemsToSearchFor.get(wrongIndex);
     }
 
-    public Context getContext()
-    {
-        return getActivity();
-    }
-
-
-
-
 }

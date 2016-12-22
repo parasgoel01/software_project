@@ -53,7 +53,6 @@ public class TescoProductPrice extends ShopProductPrice {
                 }
 
                 JSONObject item = (JSONObject)array.get(0);
-                Log.d("abcd", "inside, before");
                 foundPrice = item.get("price").toString(); //ASK
 
             } catch (JSONException e) {

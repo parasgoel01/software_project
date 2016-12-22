@@ -9,6 +9,8 @@ import android.widget.Button;
 import android.widget.TableLayout;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 import static com.example.comp41670.COINPARE.MyValues.MAX_CHARS;
 
 public class DisplayFragment extends Fragment {
@@ -46,22 +48,22 @@ public class DisplayFragment extends Fragment {
             }
         });
 
-        displayProductDetails();
+        displayProductDetails(linker.getProductNames());
 
         return myInflatedView;
     }
 
-    private void displayProductDetails() {
+    private void displayProductDetails(ArrayList<String> productNames) {
         FormatTescoPricesForDisplay formatTescoPricesForDisplay = new FormatTescoPricesForDisplay();
         FormatSuperValuPricesForDisplay formatSuperValuPricesForDisplay = new FormatSuperValuPricesForDisplay();
 
         displayTotalPrices(formatTescoPricesForDisplay, formatSuperValuPricesForDisplay);
-        displayBreakdownProducts();
+        displayBreakdownProducts(productNames);
         displayBreakdownPrices(formatTescoPricesForDisplay, formatSuperValuPricesForDisplay);
     }
 
-    private void displayBreakdownProducts() {
-        productNameView.setText(getFormattedProductNames());
+    private void displayBreakdownProducts(ArrayList<String> productNames) {
+        productNameView.setText(getFormattedProductNames(productNames));
     }
 
     private void displayBreakdownPrices(FormatTescoPricesForDisplay formatTescoPricesForDisplay, FormatSuperValuPricesForDisplay formatSuperValuPricesForDisplay) {
@@ -89,10 +91,10 @@ public class DisplayFragment extends Fragment {
         }
     }
 
-    private String getFormattedProductNames()
+    public String getFormattedProductNames(ArrayList<String> productNames)
     {
         String cutoffPrices = "";
-        for (String item:linker.getProductNames())
+        for (String item:productNames)
         {
             if (item.length() > MAX_CHARS)
             {

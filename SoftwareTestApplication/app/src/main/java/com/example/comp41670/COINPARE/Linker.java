@@ -19,7 +19,4 @@ public interface Linker {
 
     ArrayList<String> getProductNames();
 
-    //suggestions????
-    UserInputFragment getUserInputFragment();
-    //DisplayFragment getDisplayFragment();
 }

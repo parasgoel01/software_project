@@ -20,14 +20,6 @@ public class SuperValuProductPrice extends ShopProductPrice {
 	public String getIndividualProductPrice(String itemName)
 	{
 
-		/*Properties prop = new Properties();
-		try {
-			prop = loadProperties();
-		} catch (IOException e) {
-
-		}
-		String value = prop.getProperty("SUPER_VALU_URL");*/
-
 		String fixedString = fixString(itemName);
 		String price = NO_PRICE_FOUND;
 		try {

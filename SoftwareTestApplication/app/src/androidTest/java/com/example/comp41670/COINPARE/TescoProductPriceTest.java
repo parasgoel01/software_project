@@ -1,82 +1,68 @@
 package com.example.comp41670.COINPARE;
 
 
+import org.junit.Before;
 import org.junit.Test;
+
+import java.util.ArrayList;
 
 import static com.example.comp41670.COINPARE.MyValues.NO_PRICE_FOUND;
 import static org.junit.Assert.*;
 
-/**
- * Created by seancasey on 18/12/2016.
- */
 public class TescoProductPriceTest {
-    @Test
-    public void getPricesMilkTest() throws Exception {
-        assertTrue("Expected cost of milk = 1.0", new TescoProductPrice().getIndividualProductPrice("milk").equals("1.0"));
-    }
 
-    @Test
-    public void getPricesBreadTest() throws Exception {
-        assertTrue("Expected cost of bread = 0.9", new TescoProductPrice().getIndividualProductPrice("bread").equals("0.9"));
+    String itemWithSpace;
+    String itemWithNoSpace;
+    String space;
+    String itemWithMoreThanOneSpace;
+    String emptyString;
 
-    }
+    String expectedItemWithSpace;
+    String expectedItemWithNoSpace;
+    String expectedSpace;
+    String expectedItemWithMoreThanOneSpace;
+    String expectedEmptyString;
 
-    @Test
-    public void getPricesItemWithSpaceTest() throws Exception {
-        assertTrue("Expected cost of ice cream = 2.0", new TescoProductPrice().getIndividualProductPrice("ice cream").equals("2.0"));
 
-    }
+    @Before
+    public void setUp() throws Exception {
+        itemWithSpace = "ice cream";
+        itemWithNoSpace = "bread";
+        space = " ";
+        itemWithMoreThanOneSpace = "chocolate ice cream";
+        emptyString = "";
 
-    @Test
-    public void getPricesInvalidItemTest() throws Exception {
-        assertTrue("Expect to get error", new TescoProductPrice().getIndividualProductPrice("Concert Tickets").equals(NO_PRICE_FOUND));
-    }
+        expectedItemWithSpace = "ice+cream";
+        expectedItemWithNoSpace = "bread";
+        expectedSpace = "+";
+        expectedItemWithMoreThanOneSpace = "chocolate+ice+cream";
+        expectedEmptyString = "";
 
-    @Test
-    public void getPricesNumberTest() throws Exception {
-        assertTrue("Expect to get error", new TescoProductPrice().getIndividualProductPrice("12345").equals(NO_PRICE_FOUND));
-
-    }
-
-    @Test
-    public void getPricesEmptyStringTest() throws Exception {
-        //assertTrue("Expect to get error", new TescoProductPrice().getIndividualProductPrice(" ").equals(NO_PRICE_FOUND));
-        // ASK
 
     }
 
     @Test
     public void getFixedStringItemWithSpaceTest() throws Exception {
-        assertTrue("Expect to replace space with +", new TescoProductPrice().fixString("ice cream").equals("ice+cream"));
+        assertEquals("Expect the space in the string to be replaced with +", expectedItemWithSpace, new TescoProductPrice().fixString(itemWithSpace));
     }
 
     @Test
     public void getFixedStringSpaceTest() throws Exception {
-        assertTrue("Expect to replace space with +", new TescoProductPrice().fixString(" ").equals("+"));
+        assertEquals("Expect to replace space with +", expectedSpace, new TescoProductPrice().fixString(space));
     }
 
     @Test
     public void getFixedStringNoSpaceTest() throws Exception {
-        assertTrue("Expect string to be unchanged when it has no space", new TescoProductPrice().fixString("bread").equals("bread"));
+        assertEquals("Expect string to be unchanged when it has no space", expectedItemWithNoSpace, new TescoProductPrice().fixString(itemWithNoSpace));
     }
 
     @Test
     public void getFixedStringMoreThanOneSpaceTest() throws Exception {
-        assertTrue("Expect to replace each space with +", new TescoProductPrice().fixString("chocolate ice cream").equals("chocolate+ice+cream"));
+        assertEquals("Expect to replace each space with +", expectedItemWithMoreThanOneSpace, new TescoProductPrice().fixString(itemWithMoreThanOneSpace));
     }
 
     @Test
     public void getFixedStringEmptyStringTest() throws Exception {
-        assertTrue("Expect empty string to stay the same", new TescoProductPrice().fixString("").equals(""));
+        assertEquals("Expect empty string to stay the same", expectedEmptyString, new TescoProductPrice().fixString(emptyString));
     }
-
-    @Test
-    public void getFixedStringNullTest() throws Exception {
-        assertTrue("Expect empty string to stay the same", new TescoProductPrice().fixString(null).equals(null));
-    }
-
-
-
-
-
 }
