@@ -1,8 +1,7 @@
-package com.example.seancasey.softwaretestapplication;
+package com.example.comp41670.COINPARE;
 
 import org.junit.Test;
 
-import static com.example.seancasey.softwaretestapplication.MyValues.NO_PRICE_FOUND;
 import static org.junit.Assert.*;
 
 /**

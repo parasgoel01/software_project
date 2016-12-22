@@ -9,7 +9,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.seancasey.softwaretestapplication.DisplayFragment">
+    tools:context="com.example.comp41670.COINPARE.DisplayFragment">
 
     <TableLayout
         android:id="@+id/tableLayout1"

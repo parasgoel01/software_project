@@ -1,10 +1,6 @@
-package com.example.seancasey.softwaretestapplication;
+package com.example.comp41670.COINPARE;
 
 import org.junit.Test;
-
-import java.util.ArrayList;
-
-import static org.junit.Assert.*;
 
 /**
  * Created by seancasey on 19/12/2016.

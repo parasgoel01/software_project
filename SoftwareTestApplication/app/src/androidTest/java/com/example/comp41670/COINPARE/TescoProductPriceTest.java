@@ -1,14 +1,9 @@
-package com.example.seancasey.softwaretestapplication;
+package com.example.comp41670.COINPARE;
 
 
-import android.util.Log;
-
-import org.json.JSONException;
 import org.junit.Test;
 
-import java.io.IOException;
-
-import static com.example.seancasey.softwaretestapplication.MyValues.NO_PRICE_FOUND;
+import static com.example.comp41670.COINPARE.MyValues.NO_PRICE_FOUND;
 import static org.junit.Assert.*;
 
 /**

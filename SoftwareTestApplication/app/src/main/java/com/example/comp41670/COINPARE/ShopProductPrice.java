@@ -1,7 +1,5 @@
-package com.example.seancasey.softwaretestapplication;
+package com.example.comp41670.COINPARE;
 
-import android.app.ProgressDialog;
-import android.content.Context;
 import android.os.AsyncTask;
 
 import java.util.ArrayList;

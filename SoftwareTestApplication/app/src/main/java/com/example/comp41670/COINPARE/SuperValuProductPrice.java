@@ -1,18 +1,15 @@
-package com.example.seancasey.softwaretestapplication;
-
-import android.content.Context;
+package com.example.comp41670.COINPARE;
 
 import java.io.IOException;
 import java.net.URL;
 import java.net.URLConnection;
-import java.util.Properties;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static com.example.seancasey.softwaretestapplication.MyValues.NO_PRICE_FOUND;
-import static com.example.seancasey.softwaretestapplication.MyValues.SUPERVALU_PRICE_REGEX;
-import static com.example.seancasey.softwaretestapplication.MyValues.SUPERVALU_URL_START;
+import static com.example.comp41670.COINPARE.MyValues.NO_PRICE_FOUND;
+import static com.example.comp41670.COINPARE.MyValues.SUPERVALU_PRICE_REGEX;
+import static com.example.comp41670.COINPARE.MyValues.SUPERVALU_URL_START;
 
 /**
  * Created by Niamh on 13/12/2016.

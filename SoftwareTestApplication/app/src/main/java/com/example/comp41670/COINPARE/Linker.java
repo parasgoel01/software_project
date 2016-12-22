@@ -1,4 +1,4 @@
-package com.example.seancasey.softwaretestapplication;
+package com.example.comp41670.COINPARE;
 
 
 import java.util.ArrayList;

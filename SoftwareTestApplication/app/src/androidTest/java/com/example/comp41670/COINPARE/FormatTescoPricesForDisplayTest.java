@@ -1,4 +1,4 @@
-package com.example.seancasey.softwaretestapplication;
+package com.example.comp41670.COINPARE;
 
 import org.junit.Test;
 
@@ -71,15 +71,22 @@ public class FormatTescoPricesForDisplayTest {
 
     }
 
+    // poundToEuro test cases
     @Test
     public void poundToEuroNormalTest() throws Exception {
-        assertEquals("Expect to round to €1.19", 1.19, new FormatTescoPricesForDisplay().poundToEuro(1.0), 0);
+        assertEquals("Expect to get €1.19", 1.19, new FormatTescoPricesForDisplay().poundToEuro(1.0), 0);
 
     }
 
     @Test
     public void poundToEuroNegativeNumberTest() throws Exception {
-        assertEquals("Expect to round to -€2.38", 2.38, new FormatTescoPricesForDisplay().poundToEuro(2.0), 0);
+        assertEquals("Expect to get -€2.38", 2.38, new FormatTescoPricesForDisplay().poundToEuro(2.0), 0);
+
+    }
+
+    @Test
+    public void poundToEuroZeroTest() throws Exception {
+        assertEquals("Expect to get zero", 0.0, new FormatTescoPricesForDisplay().poundToEuro(0.0), 0);
 
     }
 

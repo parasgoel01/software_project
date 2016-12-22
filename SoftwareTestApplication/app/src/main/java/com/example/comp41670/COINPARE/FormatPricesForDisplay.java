@@ -1,8 +1,8 @@
-package com.example.seancasey.softwaretestapplication;
+package com.example.comp41670.COINPARE;
 
 import java.util.ArrayList;
 
-import static com.example.seancasey.softwaretestapplication.MyValues.EURO_SYMBOL;
+import static com.example.comp41670.COINPARE.MyValues.EURO_SYMBOL;
 import static java.lang.Math.round;
 
 /**

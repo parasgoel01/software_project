@@ -1,7 +1,6 @@
-package com.example.seancasey.softwaretestapplication;
+package com.example.comp41670.COINPARE;
 
 import android.annotation.TargetApi;
-import android.content.Context;
 import android.os.Build;
 import android.util.Log;
 
@@ -15,11 +14,11 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.Scanner;
 
-import static com.example.seancasey.softwaretestapplication.MyValues.NO_PRICE_FOUND;
-import static com.example.seancasey.softwaretestapplication.MyValues.SUBSCRIPTION_KEY_VALUE;
-import static com.example.seancasey.softwaretestapplication.MyValues.TESCO_SUBSCRIPTION_KEY;
-import static com.example.seancasey.softwaretestapplication.MyValues.TESCO_URL_END;
-import static com.example.seancasey.softwaretestapplication.MyValues.TESCO_URL_START;
+import static com.example.comp41670.COINPARE.MyValues.NO_PRICE_FOUND;
+import static com.example.comp41670.COINPARE.MyValues.SUBSCRIPTION_KEY_VALUE;
+import static com.example.comp41670.COINPARE.MyValues.TESCO_SUBSCRIPTION_KEY;
+import static com.example.comp41670.COINPARE.MyValues.TESCO_URL_END;
+import static com.example.comp41670.COINPARE.MyValues.TESCO_URL_START;
 
 public class TescoProductPrice extends ShopProductPrice {
 

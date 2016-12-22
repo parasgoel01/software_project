@@ -1,4 +1,4 @@
-package com.example.seancasey.softwaretestapplication;
+package com.example.comp41670.COINPARE;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -13,8 +13,8 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import static com.example.seancasey.softwaretestapplication.MyValues.LOAD_DISPLAY_FRAGMENT;
-import static com.example.seancasey.softwaretestapplication.MyValues.NO_PRICE_FOUND;
+import static com.example.comp41670.COINPARE.MyValues.LOAD_DISPLAY_FRAGMENT;
+import static com.example.comp41670.COINPARE.MyValues.NO_PRICE_FOUND;
 
 public class UserInputFragment extends Fragment {
 

@@ -1,4 +1,4 @@
-package com.example.seancasey.softwaretestapplication;
+package com.example.comp41670.COINPARE;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -9,7 +9,7 @@ import android.widget.Button;
 import android.widget.TableLayout;
 import android.widget.TextView;
 
-import static com.example.seancasey.softwaretestapplication.MyValues.MAX_CHARS;
+import static com.example.comp41670.COINPARE.MyValues.MAX_CHARS;
 
 public class DisplayFragment extends Fragment {
 

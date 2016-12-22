@@ -1,6 +1,4 @@
-package com.example.seancasey.softwaretestapplication;
-
-import android.content.Context;
+package com.example.comp41670.COINPARE;
 
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
