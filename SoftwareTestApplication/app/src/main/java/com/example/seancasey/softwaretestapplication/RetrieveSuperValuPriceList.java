@@ -1,5 +1,7 @@
 package com.example.seancasey.softwaretestapplication;
 
+import android.content.Context;
+
 /**
  * Created by seancasey on 19/12/2016.
  */

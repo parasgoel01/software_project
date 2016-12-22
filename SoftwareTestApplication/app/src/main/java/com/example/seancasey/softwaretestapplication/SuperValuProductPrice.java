@@ -1,8 +1,11 @@
 package com.example.seancasey.softwaretestapplication;
 
+import android.content.Context;
+
 import java.io.IOException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.Properties;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -19,6 +22,15 @@ public class SuperValuProductPrice extends ShopProductPrice {
 
 	public String getIndividualProductPrice(String itemName)
 	{
+
+		/*Properties prop = new Properties();
+		try {
+			prop = loadProperties();
+		} catch (IOException e) {
+
+		}
+		String value = prop.getProperty("SUPER_VALU_URL");*/
+
 		String fixedString = fixString(itemName);
 		String price = NO_PRICE_FOUND;
 		try {

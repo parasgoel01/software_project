@@ -1,5 +1,7 @@
 package com.example.seancasey.softwaretestapplication;
 
+import android.content.Context;
+
 import org.junit.Test;
 
 import java.util.ArrayList;

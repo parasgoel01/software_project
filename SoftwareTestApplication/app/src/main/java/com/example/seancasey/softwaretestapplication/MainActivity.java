@@ -94,4 +94,9 @@ public class MainActivity extends AppCompatActivity implements Linker {
     {
         return productNames;
     }
+
+    public UserInputFragment getUserInputFragment()
+    {
+        return userInputFragment;
+    }
 }

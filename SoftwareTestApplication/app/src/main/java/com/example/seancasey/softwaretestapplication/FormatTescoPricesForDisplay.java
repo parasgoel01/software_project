@@ -11,7 +11,7 @@ import static java.lang.Math.round;
 
 public class FormatTescoPricesForDisplay extends FormatPricesForDisplay {
 
-    private double poundToEuro(double pound)
+    public double poundToEuro(double pound)
     {
         return roundToNearestCent(pound * EXCHANGE_RATE);
     }
@@ -21,7 +21,7 @@ public class FormatTescoPricesForDisplay extends FormatPricesForDisplay {
         ArrayList<Double> doublePrices = new ArrayList<>();
         for (String stringPrice:stringPrices)
         {
-            double doublePrice = Double.valueOf(stringPrice); //ASK
+            double doublePrice = Double.valueOf(stringPrice);
             doublePrice = poundToEuro(doublePrice);
             doublePrices.add(doublePrice);
         }

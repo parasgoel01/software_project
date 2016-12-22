@@ -1,5 +1,7 @@
 package com.example.seancasey.softwaretestapplication;
 
+import android.content.Context;
+
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
@@ -9,11 +11,13 @@ import java.util.concurrent.ExecutionException;
 
 public abstract class RetrieveShopPriceList {
 
+
     protected ArrayList<String> productPrices(ArrayList<String> itemsToSearchFor)
     {
         ArrayList<String> shopPrices = new ArrayList<String>();
 
         ShopProductPrice shopProductPrice = getShopProductPrice();
+
         try{
             shopPrices = shopProductPrice.execute(itemsToSearchFor).get();
         }

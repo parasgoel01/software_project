@@ -1,6 +1,7 @@
 package com.example.seancasey.softwaretestapplication;
 
 import android.annotation.TargetApi;
+import android.content.Context;
 import android.os.Build;
 import android.util.Log;
 
@@ -21,6 +22,7 @@ import static com.example.seancasey.softwaretestapplication.MyValues.TESCO_URL_E
 import static com.example.seancasey.softwaretestapplication.MyValues.TESCO_URL_START;
 
 public class TescoProductPrice extends ShopProductPrice {
+
 
     @TargetApi(Build.VERSION_CODES.KITKAT)
     public String getIndividualProductPrice(String itemName)
@@ -52,6 +54,7 @@ public class TescoProductPrice extends ShopProductPrice {
                 }
 
                 JSONObject item = (JSONObject)array.get(0);
+                Log.d("abcd", "inside, before");
                 foundPrice = item.get("price").toString(); //ASK
 
             } catch (JSONException e) {

@@ -3,8 +3,6 @@ package com.example.seancasey.softwaretestapplication;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
-import android.util.Log;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -14,26 +12,20 @@ import java.util.ArrayList;
 
 public abstract class ShopProductPrice extends AsyncTask<ArrayList<String>, Void, ArrayList<String>> {
 
-    ProgressDialog progressDialog;
 
-    protected String fixString(String itemName) //SHOULD THIS BE STATIC????
+    protected String fixString(String itemName)
     {
         return itemName.replaceAll("\\s+", "\\+");
     }
 
-    protected void onPostExecute(ArrayList<String> result) //ASK
+
+    @Override
+    protected void onPostExecute(ArrayList<String> result)
     {
 
     }
 
-    protected void onPreExecute()
-    {
-
-        //progressDialog = new ProgressDialog(new MyContextWrapper());
-        //progressDialog.setMessage("in progress...");
-        //progressDialog.show();
-    }
-
+    @Override
     protected ArrayList<String> doInBackground(ArrayList<String>... params) {
 
         ArrayList<String> listOfProductPrices = new ArrayList<>();
@@ -42,9 +34,9 @@ public abstract class ShopProductPrice extends AsyncTask<ArrayList<String>, Void
             String price = getIndividualProductPrice(item);
             listOfProductPrices.add(price);
         }
-        return listOfProductPrices;
-    }
+        return listOfProductPrices;}
 
     public abstract String getIndividualProductPrice(String itemName);
+
 
 }

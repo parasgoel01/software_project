@@ -18,4 +18,8 @@ public interface Linker {
     void setProductNames(ArrayList<String> productNames);
 
     ArrayList<String> getProductNames();
+
+    //suggestions????
+    UserInputFragment getUserInputFragment();
+    //DisplayFragment getDisplayFragment();
 }

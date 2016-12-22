@@ -41,7 +41,6 @@ public class UserInputFragment extends Fragment {
                     Toast.makeText(getActivity(), "No product entered", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                //Toast.makeText(getActivity(), "Fetching prices. Please wait, this may take a while...", Toast.LENGTH_LONG).show(); //ASK
                 ArrayList<String> itemsToSearchFor = createList(shopListString);
 
                 ArrayList<String> tescoPrices = new RetrieveTescoPriceList().productPrices(itemsToSearchFor);
