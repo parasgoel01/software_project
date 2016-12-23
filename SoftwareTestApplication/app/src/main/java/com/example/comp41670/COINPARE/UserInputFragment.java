@@ -1,6 +1,5 @@
 package com.example.comp41670.COINPARE;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -29,6 +28,7 @@ public class UserInputFragment extends Fragment {
 
         myInflatedView = inflater.inflate(R.layout.fragment_userinput, container, false);
         linker = (Linker)getActivity();
+
         submitButton = (Button) myInflatedView.findViewById(R.id.submitButton);
         editShopList = (EditText) myInflatedView.findViewById(R.id.editShopList);
 
