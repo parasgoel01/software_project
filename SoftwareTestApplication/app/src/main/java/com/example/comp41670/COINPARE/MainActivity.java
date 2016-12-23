@@ -9,9 +9,12 @@ import android.os.Bundle;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements Linker {
+import static com.example.comp41670.COINPARE.MyValues.LOAD_USER_INPUT_FRAGMENT;
 
-    private int currentFragment; //to keep track of what fragment we're in now
+public class MainActivity extends AppCompatActivity implements Linker {
+    
+    // variables setup
+    private int currentFragment; //to keep track of what fragment we're in now (so that we can decide what the "back" button does)
 
     private FragmentManager fragmentManager; //for switching screens
     private Fragment fragment;
@@ -32,17 +35,17 @@ public class MainActivity extends AppCompatActivity implements Linker {
 
         fragment = new Fragment();
 
-        replaceFragments(MyValues.LOAD_TYPE_LIST_FRAGMENT);
+        replaceFragments(LOAD_USER_INPUT_FRAGMENT);
     }
 
     public void replaceFragments(int myFragment)
     {
         fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
-        if(myFragment == MyValues.LOAD_TYPE_LIST_FRAGMENT)
+        if(myFragment == LOAD_USER_INPUT_FRAGMENT)
         {
             fragment = userInputFragment;
-            currentFragment = MyValues.CURRENT_TYPE_LIST_FRAGMENT;
+            currentFragment = MyValues.CURRENT_USER_INPUT_FRAGMENT;
         }
         else if(myFragment == MyValues.LOAD_DISPLAY_FRAGMENT)
         {
@@ -53,15 +56,16 @@ public class MainActivity extends AppCompatActivity implements Linker {
         transaction.commit();
     }
 
+    // method to decide what happens when we press the "back" button on the phone
     public void onBackPressed()
     {
-        if (currentFragment != MyValues.CURRENT_TYPE_LIST_FRAGMENT)
+        if (currentFragment != MyValues.CURRENT_USER_INPUT_FRAGMENT) //if we are not looking at the type list fragment, then go back to that fragment
         {
-            replaceFragments(MyValues.LOAD_TYPE_LIST_FRAGMENT);
+            replaceFragments(LOAD_USER_INPUT_FRAGMENT);
         }
         else
         {
-            super.onBackPressed();
+            super.onBackPressed(); //otherwise, just do what the back button normally does, i.e., exit the app
         }
     }
 

@@ -8,9 +8,6 @@ import java.util.ArrayList;
 import static com.example.comp41670.COINPARE.MyValues.EURO_SYMBOL;
 import static org.junit.Assert.*;
 
-/**
- * Created by seancasey on 19/12/2016.
- */
 public class FormatTescoPricesForDisplayTest {
 
     ArrayList<String> stringPricesNormal;
@@ -72,54 +69,7 @@ public class FormatTescoPricesForDisplayTest {
 
     }
 
-    @Test
-    public void getPricesAsDoublesNormalTest() throws Exception {
-        assertEquals("Expect the list of prices multiplied by the exchange rate to be returned as doubles", expectedDoublePricesNormal, new FormatTescoPricesForDisplay().getPricesAsDoubles(stringPricesNormal));
-    }
-
-    @Test
-    public void getPricesAsDoublesAllZeroTest() throws Exception {
-        assertEquals("Expect the actual list to contain three 0.0\'s", expectedDoublePricesAllZero, new FormatTescoPricesForDisplay().getPricesAsDoubles(stringPricesAllZero));
-    }
-
-    @Test
-    public void getPricesAsDoublesNegativeTest() throws Exception {
-        assertEquals("Expect the list of negative prices multiplied by exchange rate to be returned as doubles", expectedDoublePricesNegative, new FormatTescoPricesForDisplay().getPricesAsDoubles(stringPricesNegative));
-    }
-
-    @Test
-    public void getFormattedBreakdownPricesNormalTest() throws Exception {
-        assertEquals("Expect a list of prices in euro", expectedPricesInEuroNormal, new FormatTescoPricesForDisplay().getFormattedBreakdownPrices(stringPricesNormal));
-    }
-
-    @Test
-    public void getFormattedBreakdownPricesAllZeroTest() throws Exception {
-        assertEquals("Expect a list of prices in euro which are all zero", expectedPricesInEuroAllZero, new FormatTescoPricesForDisplay().getFormattedBreakdownPrices(stringPricesAllZero));
-    }
-
-    @Test
-    public void getFormattedBreakdownPricesNegativeTest() throws Exception {
-        assertEquals("Expect a list of prices in euro which are all negative", expectedPricesInEuroNegative, new FormatTescoPricesForDisplay().getFormattedBreakdownPrices(stringPricesNegative));
-    }
-
-
-    @Test
-    public void getFormattedTotalPriceNormalTest() throws Exception {
-        assertEquals("Expect total to be equal to 3.28", expectedTotalPriceNormal, new FormatTescoPricesForDisplay().getFormattedTotalPrice(stringPricesNormal));
-    }
-
-    @Test
-    public void getFormattedTotalPriceAllNegativeTest() throws Exception {
-        assertEquals("Expect total to be equal to -15.18", expectedTotalPricesNegative, new FormatTescoPricesForDisplay().getFormattedTotalPrice(stringPricesNegative));
-    }
-
-    @Test
-    public void getFormattedTotalPriceAllZeroTest() throws Exception {
-        assertEquals("Expect total to be equal to 0", expectedTotalPricesAllZero, new FormatTescoPricesForDisplay().getFormattedTotalPrice(stringPricesAllZero));
-    }
-
-
-    // roundToNearestCent() test cases
+    //roundToNearestCent test cases
     @Test
     public void roundToNearestCentNormalRoundUpTest() throws Exception {
         assertEquals("Expect to round up to 4.45", 4.45, new FormatTescoPricesForDisplay().roundToNearestCent(4.446), 0);
@@ -156,7 +106,7 @@ public class FormatTescoPricesForDisplayTest {
 
     }
 
-    // poundToEuro test cases
+    //poundToEuro test cases
     @Test
     public void poundToEuroNormalTest() throws Exception {
         assertEquals("Expect to get €1.19", 1.19, new FormatTescoPricesForDisplay().poundToEuro(1.0), 0);
@@ -173,6 +123,54 @@ public class FormatTescoPricesForDisplayTest {
     public void poundToEuroZeroTest() throws Exception {
         assertEquals("Expect to get zero", 0.0, new FormatTescoPricesForDisplay().poundToEuro(0.0), 0);
 
+    }
+
+    //getPricesAsDoubles test cases
+    @Test
+    public void getPricesAsDoublesNormalTest() throws Exception {
+        assertEquals("Expect the list of prices multiplied by the exchange rate to be returned as doubles", expectedDoublePricesNormal, new FormatTescoPricesForDisplay().getPricesAsDoubles(stringPricesNormal));
+    }
+
+    @Test
+    public void getPricesAsDoublesAllZeroTest() throws Exception {
+        assertEquals("Expect the actual list to contain three 0.0\'s", expectedDoublePricesAllZero, new FormatTescoPricesForDisplay().getPricesAsDoubles(stringPricesAllZero));
+    }
+
+    @Test
+    public void getPricesAsDoublesNegativeTest() throws Exception {
+        assertEquals("Expect the list of negative prices multiplied by exchange rate to be returned as doubles", expectedDoublePricesNegative, new FormatTescoPricesForDisplay().getPricesAsDoubles(stringPricesNegative));
+    }
+
+    //getFormattedBreakdownPrices test cases
+    @Test
+    public void getFormattedBreakdownPricesNormalTest() throws Exception {
+        assertEquals("Expect a list of prices in euro", expectedPricesInEuroNormal, new FormatTescoPricesForDisplay().getFormattedBreakdownPrices(stringPricesNormal));
+    }
+
+    @Test
+    public void getFormattedBreakdownPricesAllZeroTest() throws Exception {
+        assertEquals("Expect a list of prices in euro which are all zero", expectedPricesInEuroAllZero, new FormatTescoPricesForDisplay().getFormattedBreakdownPrices(stringPricesAllZero));
+    }
+
+    @Test
+    public void getFormattedBreakdownPricesNegativeTest() throws Exception {
+        assertEquals("Expect a list of prices in euro which are all negative", expectedPricesInEuroNegative, new FormatTescoPricesForDisplay().getFormattedBreakdownPrices(stringPricesNegative));
+    }
+
+    //getFormattedPrice test cases
+    @Test
+    public void getFormattedTotalPriceNormalTest() throws Exception {
+        assertEquals("Expect total to be equal to 3.28", expectedTotalPriceNormal, new FormatTescoPricesForDisplay().getFormattedTotalPrice(stringPricesNormal));
+    }
+
+    @Test
+    public void getFormattedTotalPriceAllNegativeTest() throws Exception {
+        assertEquals("Expect total to be equal to -15.18", expectedTotalPricesNegative, new FormatTescoPricesForDisplay().getFormattedTotalPrice(stringPricesNegative));
+    }
+
+    @Test
+    public void getFormattedTotalPriceAllZeroTest() throws Exception {
+        assertEquals("Expect total to be equal to 0", expectedTotalPricesAllZero, new FormatTescoPricesForDisplay().getFormattedTotalPrice(stringPricesAllZero));
     }
 
 }

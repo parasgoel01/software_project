@@ -41,6 +41,7 @@ public class TescoProductPriceTest {
 
     }
 
+    //getFixedString test cases
     @Test
     public void getFixedStringItemWithSpaceTest() throws Exception {
         assertEquals("Expect the space in the string to be replaced with +", expectedItemWithSpace, new TescoProductPrice().fixString(itemWithSpace));

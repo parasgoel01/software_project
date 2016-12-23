@@ -87,6 +87,7 @@ public class RetrieveSuperValuPriceListTest {
 
     }
 
+    //productPrices test cases
     @Test
     public void productPricesLongListTest() throws Exception {
         assertEquals("Expect a list of prices for each item", expectedPriceLongList, new RetrieveSuperValuPriceList().productPrices(productNamesLongList));

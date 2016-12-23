@@ -8,9 +8,6 @@ import java.util.ArrayList;
 import static com.example.comp41670.COINPARE.MyValues.NO_PRICE_FOUND;
 import static org.junit.Assert.*;
 
-/**
- * Created by seancasey on 19/12/2016.
- */
 public class UserInputFragmentTest {
 
     String testStringNormal;
@@ -34,9 +31,8 @@ public class UserInputFragmentTest {
     ArrayList<String> listWithAllInvalidItems;
     ArrayList<String> listWithAllInvalidItemsPrices;
 
-
-
-
+    ArrayList<String> listWithNumbersAsInvalidItems;
+    ArrayList<String> listWithNumbersAsInvalidItemsPrices;
 
     @Before
     public void setUp() throws Exception {
@@ -86,9 +82,18 @@ public class UserInputFragmentTest {
         listWithAllInvalidItemsPrices.add(NO_PRICE_FOUND);
         listWithAllInvalidItemsPrices.add(NO_PRICE_FOUND);
         listWithAllInvalidItemsPrices.add(NO_PRICE_FOUND);
+
+        listWithNumbersAsInvalidItems = new ArrayList<>();
+        listWithNumbersAsInvalidItems.add("bread");
+        listWithNumbersAsInvalidItems.add("12345");
+        listWithNumbersAsInvalidItems.add("54321");
+        listWithNumbersAsInvalidItemsPrices = new ArrayList<>();
+        listWithNumbersAsInvalidItemsPrices.add("0.79");
+        listWithNumbersAsInvalidItemsPrices.add(NO_PRICE_FOUND);
+        listWithNumbersAsInvalidItemsPrices.add(NO_PRICE_FOUND);
     }
 
-
+    //createList test cases
     @Test
     public void createListNormalTest() throws Exception {
         assertEquals("Expect the string to be split into a list of 3 items", expectedListNormal, new UserInputFragment().createList(testStringNormal));
@@ -122,6 +127,11 @@ public class UserInputFragmentTest {
     @Test
     public void findInvalidItemAllInvalidItemsTest() throws Exception {
         assertEquals("Expect \"Concert Tickets\" item to be the invalid item, as it is the 1st invalid item", "Concert Tickets",new UserInputFragment().findInvalidItem(listWithAllInvalidItems, listWithAllInvalidItemsPrices));
+    }
+
+    @Test
+    public void findInvalidItemNumbersAsInvalidItemsTest() throws Exception {
+        assertEquals("Expect the 1st number in list \"12345\" item to be the invalid item, as it is the 1st invalid item", "12345",new UserInputFragment().findInvalidItem(listWithNumbersAsInvalidItems, listWithNumbersAsInvalidItemsPrices));
     }
 
 }

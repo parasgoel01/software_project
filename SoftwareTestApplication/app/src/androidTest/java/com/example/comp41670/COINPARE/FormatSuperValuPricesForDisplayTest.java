@@ -55,6 +55,7 @@ public class FormatSuperValuPricesForDisplayTest {
 
     }
 
+    //getPricesAsDoubles test cases
     @Test
     public void getPricesAsDoublesNormalTest() throws Exception {
         assertEquals("Expect the list of prices to be returned as doubles", expectedDoublePricesNormal, new FormatSuperValuPricesForDisplay().getPricesAsDoubles(stringPricesNormal));

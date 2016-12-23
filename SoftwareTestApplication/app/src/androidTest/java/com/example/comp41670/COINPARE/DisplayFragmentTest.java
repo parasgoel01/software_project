@@ -7,9 +7,6 @@ import java.util.ArrayList;
 
 import static org.junit.Assert.*;
 
-/**
- * Created by seancasey on 22/12/2016.
- */
 public class DisplayFragmentTest {
 
     ArrayList<String> productNamesLongList;
@@ -52,6 +49,7 @@ public class DisplayFragmentTest {
         expectedProductNamesSpaceListFormatted = " \n";
     }
 
+    //getFormattedProductNames test cases
     @Test
     public void getFormattedProductNamesLongListTest() throws Exception {
         assertEquals("Expect that no characters in the list exceed 10 chars", expectedProductNamesLongListFormatted, new DisplayFragment().getFormattedProductNames(productNamesLongList));

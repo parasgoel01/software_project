@@ -8,9 +8,6 @@ import java.util.ArrayList;
 import static com.example.comp41670.COINPARE.MyValues.NO_PRICE_FOUND;
 import static org.junit.Assert.*;
 
-/**
- * Created by seancasey on 19/12/2016.
- */
 public class RetrieveTescoPriceListTest {
 
     ArrayList<String> productNamesLongList;
@@ -82,12 +79,9 @@ public class RetrieveTescoPriceListTest {
         expectedPriceListOfNumbers.add(NO_PRICE_FOUND);
         expectedPriceListOfNumbers.add(NO_PRICE_FOUND);
         expectedPriceListOfNumbers.add(NO_PRICE_FOUND);
-
-
-
-
     }
 
+    //productPrices test cases
     @Test
     public void productPricesLongListTest() throws Exception {
         assertEquals("Expect a list of prices for each item", expectedPriceLongList, new RetrieveTescoPriceList().productPrices(productNamesLongList));
