@@ -28,9 +28,6 @@ public class UserInputFragmentTest {
     ArrayList<String> listWithMoreThanOneInvalidItem;
     ArrayList<String> listWithMoreThanOneInvalidItemPrices;
 
-    ArrayList<String> listWithAllInvalidItems;
-    ArrayList<String> listWithAllInvalidItemsPrices;
-
     ArrayList<String> listWithNumbersAsInvalidItems;
     ArrayList<String> listWithNumbersAsInvalidItemsPrices;
 
@@ -74,15 +71,6 @@ public class UserInputFragmentTest {
         listWithMoreThanOneInvalidItemPrices = listWithInvalidItemPrices;
         listWithMoreThanOneInvalidItemPrices.add(NO_PRICE_FOUND);
 
-        listWithAllInvalidItems = new ArrayList<>();
-        listWithAllInvalidItems.add("Concert Tickets");
-        listWithAllInvalidItems.add("software engineering");
-        listWithAllInvalidItems.add("aeroplanes");
-        listWithAllInvalidItemsPrices = new ArrayList<>();
-        listWithAllInvalidItemsPrices.add(NO_PRICE_FOUND);
-        listWithAllInvalidItemsPrices.add(NO_PRICE_FOUND);
-        listWithAllInvalidItemsPrices.add(NO_PRICE_FOUND);
-
         listWithNumbersAsInvalidItems = new ArrayList<>();
         listWithNumbersAsInvalidItems.add("bread");
         listWithNumbersAsInvalidItems.add("12345");
@@ -122,11 +110,6 @@ public class UserInputFragmentTest {
     @Test
     public void findInvalidItemMoreThanOneInvalidItemTest() throws Exception {
         assertEquals("Expect \"Concert Tickets\" item to be the invalid item, as it is the 1st invalid item", "Concert Tickets",new UserInputFragment().findInvalidItem(listWithMoreThanOneInvalidItem, listWithMoreThanOneInvalidItemPrices));
-    }
-
-    @Test
-    public void findInvalidItemAllInvalidItemsTest() throws Exception {
-        assertEquals("Expect \"Concert Tickets\" item to be the invalid item, as it is the 1st invalid item", "Concert Tickets",new UserInputFragment().findInvalidItem(listWithAllInvalidItems, listWithAllInvalidItemsPrices));
     }
 
     @Test

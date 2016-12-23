@@ -12,11 +12,11 @@ import java.util.ArrayList;
 import static com.example.comp41670.COINPARE.MyValues.LOAD_USER_INPUT_FRAGMENT;
 
 public class MainActivity extends AppCompatActivity implements Linker {
-    
+
     // variables setup
     private int currentFragment; //to keep track of what fragment we're in now (so that we can decide what the "back" button does)
 
-    private FragmentManager fragmentManager; //for switching screens
+    private FragmentManager fragmentManager;
     private Fragment fragment;
     private UserInputFragment userInputFragment;
     private DisplayFragment displayFragment;
@@ -35,9 +35,11 @@ public class MainActivity extends AppCompatActivity implements Linker {
 
         fragment = new Fragment();
 
-        replaceFragments(LOAD_USER_INPUT_FRAGMENT);
+        replaceFragments(LOAD_USER_INPUT_FRAGMENT); //load the user input fragment as soon as the app is launched
     }
 
+
+    // method to change the fragment which is displayed to the user on the screen
     public void replaceFragments(int myFragment)
     {
         fragmentManager = getSupportFragmentManager();
@@ -69,6 +71,7 @@ public class MainActivity extends AppCompatActivity implements Linker {
         }
     }
 
+    // getter and setter methods for our lists of products and prices
     public void setTescoProductPrices(ArrayList<String> productPrices)
     {
         this.tescoProductPrices = productPrices;

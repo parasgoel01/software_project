@@ -36,11 +36,13 @@ public class UserInputFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 String shopListString = editShopList.getText().toString();
+                // if no product is inputted
                 if (shopListString.trim().isEmpty())
                 {
                     Toast.makeText(getActivity(), "No product entered", Toast.LENGTH_SHORT).show();
                     return;
                 }
+
                 ArrayList<String> itemsToSearchFor = createList(shopListString);
 
                 ArrayList<String> tescoPrices = new RetrieveTescoPriceList().productPrices(itemsToSearchFor);
@@ -61,7 +63,6 @@ public class UserInputFragment extends Fragment {
                     return;
                 }
 
-
                 setValuesForLinker(itemsToSearchFor, tescoPrices, superValuPrices);
                 linker.replaceFragments(LOAD_DISPLAY_FRAGMENT);
 
@@ -71,17 +72,20 @@ public class UserInputFragment extends Fragment {
         return myInflatedView;
     }
 
+    // method to set up the values in the linker so that they can be accessed by the next fragment
     private void setValuesForLinker(ArrayList<String> itemsToSearchFor, ArrayList<String> tescoPrices, ArrayList<String> superValuPrices) {
         linker.setProductNames(itemsToSearchFor);
         linker.setTescoProductPrices(tescoPrices);
         linker.setSuperValuProductPrices(superValuPrices);
     }
 
+    // method to return the user's shopping list in ArrayList form
     public ArrayList<String> createList(String shopList)
     {
-        return new ArrayList<String>(Arrays.asList(shopList.split("[\\r\\n]+")));
+        return new ArrayList<>(Arrays.asList(shopList.split("[\\r\\n]+")));
     }
 
+    // method to find which item in the list of itemsToSearchFor is invalid
     public String findInvalidItem(ArrayList<String> itemsToSearchFor, ArrayList<String> productPrices)
     {
         int wrongIndex = productPrices.indexOf(NO_PRICE_FOUND);

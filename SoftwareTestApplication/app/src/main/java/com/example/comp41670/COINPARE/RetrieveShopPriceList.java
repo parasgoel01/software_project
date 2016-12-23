@@ -3,21 +3,17 @@ package com.example.comp41670.COINPARE;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
-/**
- * Created by seancasey on 19/12/2016.
- */
-
 public abstract class RetrieveShopPriceList {
 
-
+    // method to get an arraylist of product prices from an arraylist of products
     protected ArrayList<String> productPrices(ArrayList<String> itemsToSearchFor)
     {
-        ArrayList<String> shopPrices = new ArrayList<String>();
+        ArrayList<String> shopPrices = new ArrayList<>();
 
         ShopProductPrice shopProductPrice = getShopProductPrice();
 
         try{
-            shopPrices = shopProductPrice.execute(itemsToSearchFor).get();
+            shopPrices = shopProductPrice.execute(itemsToSearchFor).get(); //starting the AsyncTask for accessing the internet
         }
         catch(InterruptedException ex1)
         {
@@ -30,5 +26,6 @@ public abstract class RetrieveShopPriceList {
         return shopPrices;
     }
 
+    // method to get the product price for a shop (defined in subclasses for SuperValu and Tesco)
     public abstract ShopProductPrice getShopProductPrice();
 }

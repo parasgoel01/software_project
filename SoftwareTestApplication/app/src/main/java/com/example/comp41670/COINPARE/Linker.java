@@ -3,6 +3,7 @@ package com.example.comp41670.COINPARE;
 
 import java.util.ArrayList;
 
+// interface for facilitating interaction between the two fragments and the main activity
 public interface Linker {
 
     void replaceFragments(int myFragment);

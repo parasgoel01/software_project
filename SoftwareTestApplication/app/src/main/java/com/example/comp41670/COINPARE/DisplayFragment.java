@@ -62,20 +62,24 @@ public class DisplayFragment extends Fragment {
         displayBreakdownPrices(formatTescoPricesForDisplay, formatSuperValuPricesForDisplay);
     }
 
+    // display individual product names from SuperValu and Tesco
     private void displayBreakdownProducts(ArrayList<String> productNames) {
         productNameView.setText(getFormattedProductNames(productNames));
     }
 
+    // display individual product prices from SuperValu and Tesco
     private void displayBreakdownPrices(FormatTescoPricesForDisplay formatTescoPricesForDisplay, FormatSuperValuPricesForDisplay formatSuperValuPricesForDisplay) {
         tescoBreakdownView.setText(formatTescoPricesForDisplay.getFormattedBreakdownPrices(linker.getTescoProductPrices()));
         superValuBreakdownView.setText(formatSuperValuPricesForDisplay.getFormattedBreakdownPrices(linker.getSuperValuProductPrices()));
     }
 
+    // display the sum of price lists from SuperValu and Tesco
     private void displayTotalPrices(FormatTescoPricesForDisplay formatTescoPricesForDisplay, FormatSuperValuPricesForDisplay formatSuperValuPricesForDisplay) {
         tescoPriceView.setText(formatTescoPricesForDisplay.getFormattedTotalPrice(linker.getTescoProductPrices()));
         superValuPriceView.setText(formatSuperValuPricesForDisplay.getFormattedTotalPrice(linker.getSuperValuProductPrices()));
     }
 
+    // method to turn the price breakdown display on/off
     private void togglePriceBreakdown()
     {
         if (breakdownTableLayout.getVisibility()==View.INVISIBLE)
@@ -91,6 +95,7 @@ public class DisplayFragment extends Fragment {
         }
     }
 
+    // method to get format product names for display
     public String getFormattedProductNames(ArrayList<String> productNames)
     {
         String cutoffPrices = "";
@@ -107,7 +112,4 @@ public class DisplayFragment extends Fragment {
         }
         return cutoffPrices;
     }
-
-
-
 }

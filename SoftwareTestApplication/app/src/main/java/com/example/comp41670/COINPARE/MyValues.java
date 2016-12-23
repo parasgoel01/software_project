@@ -22,5 +22,5 @@ public final class MyValues {
     public static final String SUPERVALU_PRICE_REGEX = ".*?(\\d+(\\.\\d+)*).*";
     public static final String EURO_SYMBOL = "€";
 
-    public static final String NO_PRICE_FOUND = "no price found"; //TODO change to -1?
+    public static final String NO_PRICE_FOUND = "no price found";
 }

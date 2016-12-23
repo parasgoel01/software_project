@@ -11,12 +11,9 @@ import static com.example.comp41670.COINPARE.MyValues.NO_PRICE_FOUND;
 import static com.example.comp41670.COINPARE.MyValues.SUPERVALU_PRICE_REGEX;
 import static com.example.comp41670.COINPARE.MyValues.SUPERVALU_URL_START;
 
-/**
- * Created by Niamh on 13/12/2016.
- */
-
 public class SuperValuProductPrice extends ShopProductPrice {
 
+	// call methods to send item name to scanner and to retrieve price from HTML
 	public String getIndividualProductPrice(String itemName)
 	{
 
@@ -32,11 +29,13 @@ public class SuperValuProductPrice extends ShopProductPrice {
 		return price;
 	}
 
+	// URL connection to access SuperValu website
 	private Scanner getScanner(String fixedString) throws IOException {
 		URLConnection connection =  new URL(SUPERVALU_URL_START +fixedString).openConnection();
 		return new Scanner(connection.getInputStream());
 	}
 
+	// scan HTML to find price
 	private static String getPriceFromScanner(Scanner scanner)
 	{
 		String price = NO_PRICE_FOUND;
@@ -52,6 +51,7 @@ public class SuperValuProductPrice extends ShopProductPrice {
 		return price;
 	}
 
+	// use regular expression to extract price from HTML
 	private static String getPriceFromHtml(String html)
 	{
 		String price = "";
